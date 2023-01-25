@@ -11,26 +11,25 @@ using Xamarin.Forms;
 
 namespace GlovobolieApp.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ProductsViewModel : BaseViewModel
     {
         private Product _selectedItem;
 
         public ObservableCollection<Product> Items { get; }
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
+        public Command LoadProductsCommand { get; }
+        public Command AddProductCommand { get; }
         public Command<Product> ItemTapped { get; }
 
-        private ProductService productService;
 
-        public ItemsViewModel()
+        public ProductsViewModel()
         {
-            Title = "Browse";
+            Title = "Products";
             Items = new ObservableCollection<Product>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadProductsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Product>(OnItemSelected);
 
-            AddItemCommand = new Command(OnAddItem);
+            AddProductCommand = new Command(OnAddItem);
         }
 
         async Task ExecuteLoadItemsCommand()

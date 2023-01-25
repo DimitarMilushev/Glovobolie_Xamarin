@@ -650,3 +650,7 @@ E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android\assets\SharpCompress.dll
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android\assets\Snappier.dll
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android\assets\ZstdSharp.dll
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_cart.png
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_history.png
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_products.png
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_profile.png

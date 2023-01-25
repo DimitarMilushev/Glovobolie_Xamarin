@@ -11,8 +11,10 @@ namespace GlovobolieApp
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(ProductsListPage), typeof(ProductsListPage));
+            Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
+            Routing.RegisterRoute(nameof(CartPage), typeof(CartPage));
+            Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
         }
 
     }
