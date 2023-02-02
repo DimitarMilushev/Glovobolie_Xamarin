@@ -1,5 +1,4 @@
 ﻿using GlovobolieApp.Services;
-using GlovobolieApp.Services.RepositoryService;
 using GlovobolieApp.Views;
 using System;
 using Xamarin.Forms;

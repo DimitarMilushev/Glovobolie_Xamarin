@@ -1,6 +1,5 @@
 ﻿using GlovobolieApp.Models;
 using GlovobolieApp.Services;
-using GlovobolieApp.Services.RepositoryService;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

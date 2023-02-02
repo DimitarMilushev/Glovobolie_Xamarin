@@ -18,6 +18,7 @@
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
     <RefreshView Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        
         <CollectionView x:Name="ItemsListView"
                 ItemsLayout="VerticalGrid, 2"
                 ItemsSource="{Binding Items}"

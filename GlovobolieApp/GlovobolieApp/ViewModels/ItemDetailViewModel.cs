@@ -44,7 +44,7 @@ namespace GlovobolieApp.ViewModels
             try
             {
                 var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
+                Id = item.Id.ToString();
                 Text = item.Description;
                 Description = item.Description;
             }

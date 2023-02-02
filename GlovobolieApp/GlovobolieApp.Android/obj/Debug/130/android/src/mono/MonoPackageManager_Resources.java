@@ -3,19 +3,10 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "GlovobolieApp.Android.dll" comes first in this list. */
 		"GlovobolieApp.Android.dll",
-		"DnsClient.dll",
 		"FormsViewGroup.dll",
 		"GlovobolieApp.dll",
-		"Microsoft.Extensions.Logging.Abstractions.dll",
-		"Microsoft.Win32.Registry.dll",
-		"MongoDB.Bson.dll",
-		"MongoDB.Driver.Core.dll",
-		"MongoDB.Driver.dll",
-		"MongoDB.Libmongocrypt.dll",
-		"SharpCompress.dll",
-		"Snappier.dll",
-		"System.Security.AccessControl.dll",
-		"System.Security.Principal.Windows.dll",
+		"MySqlConnector.dll",
+		"System.Diagnostics.DiagnosticSource.dll",
 		"Xamarin.AndroidX.Activity.dll",
 		"Xamarin.AndroidX.Annotation.dll",
 		"Xamarin.AndroidX.Annotation.Experimental.dll",
@@ -75,7 +66,6 @@ public class MonoPackageManager_Resources {
 		"Xamarin.Forms.Xaml.dll",
 		"Xamarin.Google.Android.Material.dll",
 		"Xamarin.Google.Guava.ListenableFuture.dll",
-		"ZstdSharp.dll",
 	};
 	public static String[] Dependencies = new String[]{
 	};

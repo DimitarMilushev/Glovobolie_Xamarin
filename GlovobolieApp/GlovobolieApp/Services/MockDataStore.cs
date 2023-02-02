@@ -14,12 +14,11 @@ namespace GlovobolieApp.Services
         {
             items = new List<Product>()
             {
-                new Product { Id = Guid.NewGuid().ToString(), Title = "First item", Description="This is an item description.", Price = 13.2 , ImageURL = "https://thumbs.dreamstime.com/z/chef-hotel-restaurant-kitchen-cooking-hands-prepared-beef-steak-vegetable-decoration-81415061.jpg"},
-                new Product { Id = Guid.NewGuid().ToString(), Title = "Second item", Description="This is an item description.", Price = 3.5 , ImageURL = "https://thumbs.dreamstime.com/z/bowl-chili-13727177.jpg"        },
-                new Product { Id = Guid.NewGuid().ToString(), Title = "Third item", Description="This is an item description." , Price = 5.3 , ImageURL = "https://thumbs.dreamstime.com/z/italian-food-white-plate-36425880.jpg"  },
-                new Product { Id = Guid.NewGuid().ToString(), Title = "Fourth item", Description="This is an item description.", Price = 6.5 , ImageURL = "https://thumbs.dreamstime.com/b/arabic-food-kabsa-chicken-rice-vegetables-close-up-ho-plate-horizontal-view-above-69259015.jpg"   },
-                new Product { Id = Guid.NewGuid().ToString(), Title = "Fifth item", Description="This is an item description." , Price = 3.5 , ImageURL = "https://thumbs.dreamstime.com/b/fast-food-menu-chicken-nuggets-hamburger-french-fries-33671451.jpg"    },
-                new Product { Id = Guid.NewGuid().ToString(), Title = "Sixth item", Description="This is an item description." , Price = 10.5, ImageURL = "https://thumbs.dreamstime.com/b/bombay-potato-curry-indian-food-29146242.jpg"        }
+                new Product { Id =1, Title = "First item", Description="This is an item description.", Price = 13.2 , ImageURL = "https://thumbs.dreamstime.com/z/chef-hotel-restaurant-kitchen-cooking-hands-prepared-beef-steak-vegetable-decoration-81415061.jpg"},
+                new Product { Id = 2, Title = "Third item", Description="This is an item description." , Price = 5.3 , ImageURL = "https://thumbs.dreamstime.com/z/italian-food-white-plate-36425880.jpg"  },
+                new Product { Id =3, Title = "Fourth item", Description="This is an item description.", Price = 6.5 , ImageURL = "https://thumbs.dreamstime.com/b/arabic-food-kabsa-chicken-rice-vegetables-close-up-ho-plate-horizontal-view-above-69259015.jpg"   },
+                new Product { Id = 4, Title = "Fifth item", Description="This is an item description." , Price = 3.5 , ImageURL = "https://thumbs.dreamstime.com/b/fast-food-menu-chicken-nuggets-hamburger-french-fries-33671451.jpg"    },
+                new Product { Id = 5, Title = "Sixth item", Description="This is an item description." , Price = 10.5, ImageURL = "https://thumbs.dreamstime.com/b/bombay-potato-curry-indian-food-29146242.jpg"        }
             };
         }
 
@@ -41,7 +40,7 @@ namespace GlovobolieApp.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Product arg) => arg.Id == id).FirstOrDefault();
+            var oldItem = items.Where((Product arg) => arg.Id.ToString() == id).FirstOrDefault();
             items.Remove(oldItem);
 
             return await Task.FromResult(true);
@@ -49,7 +48,7 @@ namespace GlovobolieApp.Services
 
         public async Task<Product> GetItemAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(items.FirstOrDefault(s => s.Id.ToString() == id));
         }
 
         public async Task<IEnumerable<Product>> GetItemsAsync(bool forceRefresh = false)

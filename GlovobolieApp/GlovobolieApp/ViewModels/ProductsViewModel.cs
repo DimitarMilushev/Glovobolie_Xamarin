@@ -1,6 +1,5 @@
 ﻿using GlovobolieApp.Models;
-using GlovobolieApp.Services.ProductService;
-using GlovobolieApp.Services.RepositoryService;
+using GlovobolieApp.Services;
 using GlovobolieApp.Views;
 using System;
 using System.Collections.Generic;
@@ -19,8 +18,6 @@ namespace GlovobolieApp.ViewModels
         public Command LoadProductsCommand { get; }
         public Command AddProductCommand { get; }
         public Command<Product> ItemTapped { get; }
-
-
         public ProductsViewModel()
         {
             Title = "Products";
@@ -30,6 +27,7 @@ namespace GlovobolieApp.ViewModels
             ItemTapped = new Command<Product>(OnItemSelected);
 
             AddProductCommand = new Command(OnAddItem);
+           
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -39,11 +37,7 @@ namespace GlovobolieApp.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+
             }
             catch (Exception ex)
             {

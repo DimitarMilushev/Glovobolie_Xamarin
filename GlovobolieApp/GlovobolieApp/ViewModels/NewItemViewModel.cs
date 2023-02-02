@@ -51,7 +51,7 @@ namespace GlovobolieApp.ViewModels
         {
             Product newItem = new Product()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = 100,
                 Title = Text,
                 Description = Description
             };
