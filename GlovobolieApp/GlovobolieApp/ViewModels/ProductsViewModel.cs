@@ -1,4 +1,5 @@
-﻿using GlovobolieApp.Models;
+﻿using GlovobolieApp.Artifacts.ProductService;
+using GlovobolieApp.Models;
 using GlovobolieApp.Services;
 using GlovobolieApp.Views;
 using System;
@@ -13,11 +14,12 @@ namespace GlovobolieApp.ViewModels
     public class ProductsViewModel : BaseViewModel
     {
         private Product _selectedItem;
-
         public ObservableCollection<Product> Items { get; }
         public Command LoadProductsCommand { get; }
         public Command AddProductCommand { get; }
         public Command<Product> ItemTapped { get; }
+
+        private ProductService productService = DependencyService.Get<ProductService>();
         public ProductsViewModel()
         {
             Title = "Products";
@@ -37,7 +39,10 @@ namespace GlovobolieApp.ViewModels
             try
             {
                 Items.Clear();
-
+                var newItems = await productService.GetProductsAsync();
+                foreach ( var item in newItems ) { 
+                    Items.Add(item);
+                }
             }
             catch (Exception ex)
             {

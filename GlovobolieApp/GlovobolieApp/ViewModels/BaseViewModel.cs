@@ -10,8 +10,6 @@ namespace GlovobolieApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Product> DataStore => DependencyService.Get<IDataStore<Product>>();
-
         bool isBusy = false;
         public bool IsBusy
         {

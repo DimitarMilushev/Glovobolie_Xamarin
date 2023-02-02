@@ -1,4 +1,6 @@
-﻿using GlovobolieApp.Services;
+﻿using GlovobolieApp.Artifacts.ProductService;
+using GlovobolieApp.Artifacts.RepositoryService;
+using GlovobolieApp.Services;
 using GlovobolieApp.Views;
 using System;
 using Xamarin.Forms;
@@ -14,7 +16,8 @@ namespace GlovobolieApp
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-
+            DependencyService.RegisterSingleton<Repository>(new Repository());
+            DependencyService.Register<ProductService>();
             MainPage = new AppShell();
         }
 
