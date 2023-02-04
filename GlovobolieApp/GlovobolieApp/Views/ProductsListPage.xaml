@@ -10,26 +10,29 @@
     <ContentPage.BindingContext>
         <local:ProductsViewModel/>
     </ContentPage.BindingContext>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddProductCommand}" />
-    </ContentPage.ToolbarItems>
+
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <RefreshView Command="{Binding LoadProductsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        
+    <AbsoluteLayout>
         <CollectionView x:Name="ItemsListView"
-                ItemsLayout="VerticalGrid, 2"
+                ItemsLayout="VerticalList"
                 ItemsSource="{Binding Items}"
+                Margin="24, 0"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="5" x:DataType="model:Product">
+                    <StackLayout Padding="15">
+                    <Frame 
+                        Margin="0"
+                        BackgroundColor="{StaticResource Secondary}"
+                        Padding="0"
+                        CornerRadius="20">
+                    <StackLayout  x:DataType="model:Product">
                         <Frame 
                             HeightRequest="168" 
                             HasShadow="True" 
-                            BorderColor="Yellow" 
                             CornerRadius="20" 
                             Padding="0">
                             <Image 
@@ -40,10 +43,9 @@
                         </Frame>
                         <Label 
                             Text="{Binding Title}"
-                            Padding="20, 0, 0, 0"
-                            HeightRequest="64"
+                            Padding="15, 0, 0, 10"
                             LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
+                            Style="{StaticResource TextMedium}" 
                             FontSize="16" />
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
@@ -53,8 +55,17 @@
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
+                    </Frame>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </RefreshView>
+        <!-- Loader has proportional w * 2 and h * 2 with absolute x,y coordinates (Cenetered) -->
+        <ActivityIndicator 
+            IsRunning="{Binding IsBusy}"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            AbsoluteLayout.LayoutBounds ="0.5, 0.5"
+            Color="{StaticResource Primary}"
+            Scale="2"/>
+    </AbsoluteLayout>
 </ContentPage>

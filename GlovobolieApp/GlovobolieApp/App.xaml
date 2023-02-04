@@ -6,8 +6,31 @@
         Define global resources and styles here, that apply to all pages in your app.
     -->
     <Application.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+                <Color x:Key="Primary">#FFB100</Color>
+            <Color x:Key="Secondary">#FBC252</Color>
+            <Color x:Key="BackgroundPrimary">#F0ECCF</Color>
+            <Color x:Key="BackgroundSecondary">#A3BB98</Color>
+            <Color x:Key="PrimaryTextColor">White</Color>
+            <Color x:Key="SecondaryTextColor">White</Color>
+            <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
+            <Color x:Key="TransparentColor">Transparent</Color>
+            <!-- 
+                Labels
+            -->
+            <Style x:Key="TextLarge" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontSize" Value="24"></Setter>
+            </Style>
+            <Style x:Key="TextMedium" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+            <Style x:Key="TextSmall" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontSize" Value="12"></Setter>
+            </Style>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -20,7 +43,7 @@
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource TertiaryTextColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

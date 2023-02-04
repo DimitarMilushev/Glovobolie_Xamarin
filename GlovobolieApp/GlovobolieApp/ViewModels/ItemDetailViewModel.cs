@@ -53,7 +53,6 @@ namespace GlovobolieApp.ViewModels
 
         protected override void InitDependencies()
         {
-            throw new NotImplementedException();
         }
     }
 }

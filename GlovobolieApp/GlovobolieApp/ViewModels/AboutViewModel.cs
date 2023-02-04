@@ -7,7 +7,7 @@ namespace GlovobolieApp.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        public AboutViewModel()
+        public AboutViewModel() : base()
         {
             Title = "About";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
@@ -17,7 +17,6 @@ namespace GlovobolieApp.ViewModels
 
         protected override void InitDependencies()
         {
-            throw new NotImplementedException();
         }
     }
 }

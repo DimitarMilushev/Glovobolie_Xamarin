@@ -21,7 +21,7 @@ namespace GlovobolieApp.ViewModels
         public Command<Product> ItemTapped { get; }
 
         private IProductService productService;
-        public ProductsViewModel()
+        public ProductsViewModel() : base()
         {
             Title = "Products";
             Items = new ObservableCollection<Product>();
@@ -30,8 +30,7 @@ namespace GlovobolieApp.ViewModels
             ItemTapped = new Command<Product>(OnItemSelected);
 
             AddProductCommand = new Command(OnAddItem);
-
-
+            Task.Run(this.ExecuteLoadItemsCommand);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -60,7 +59,7 @@ namespace GlovobolieApp.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
-        }
+        }   
 
         public Product SelectedItem
         {
@@ -74,7 +73,7 @@ namespace GlovobolieApp.ViewModels
 
         private async void OnAddItem(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
+           // await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
         async void OnItemSelected(Product item)
@@ -83,7 +82,7 @@ namespace GlovobolieApp.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+        //    await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
 
         protected override void InitDependencies()

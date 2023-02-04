@@ -10,6 +10,10 @@ namespace GlovobolieApp.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        public BaseViewModel()
+        {
+            this.InitDependencies();
+        }
         protected abstract void InitDependencies();
 
         bool isBusy = false;

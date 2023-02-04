@@ -10,7 +10,7 @@ namespace GlovobolieApp.ViewModels
     {
         public Command LoginCommand { get; }
 
-        public LoginViewModel()
+        public LoginViewModel() : base()
         {
             LoginCommand = new Command(OnLoginClicked);
         }
@@ -23,7 +23,6 @@ namespace GlovobolieApp.ViewModels
 
         protected override void InitDependencies()
         {
-            throw new NotImplementedException();
         }
     }
 }

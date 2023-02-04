@@ -12,7 +12,7 @@ namespace GlovobolieApp.ViewModels
         private string text;
         private string description;
 
-        public NewItemViewModel()
+        public NewItemViewModel() : base()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
@@ -63,7 +63,6 @@ namespace GlovobolieApp.ViewModels
 
         protected override void InitDependencies()
         {
-            throw new NotImplementedException();
         }
     }
 }
