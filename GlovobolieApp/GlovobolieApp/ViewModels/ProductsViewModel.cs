@@ -1,6 +1,7 @@
 ﻿using GlovobolieApp.Artifacts.ProductService;
 using GlovobolieApp.Models;
 using GlovobolieApp.Services;
+using GlovobolieApp.Services.ProductService;
 using GlovobolieApp.Views;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace GlovobolieApp.ViewModels
         public Command AddProductCommand { get; }
         public Command<Product> ItemTapped { get; }
 
-        private ProductService productService = DependencyService.Get<ProductService>();
+        private IProductService productService;
         public ProductsViewModel()
         {
             Title = "Products";
@@ -29,7 +30,8 @@ namespace GlovobolieApp.ViewModels
             ItemTapped = new Command<Product>(OnItemSelected);
 
             AddProductCommand = new Command(OnAddItem);
-           
+
+
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -82,6 +84,18 @@ namespace GlovobolieApp.ViewModels
 
             // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+        }
+
+        protected override void InitDependencies()
+        {
+            if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
+            {
+                productService = DependencyService.Get<ProductServiceMock>();
+            }
+            else
+            {
+                productService = DependencyService.Get<ProductService>();
+            }
         }
     }
 }

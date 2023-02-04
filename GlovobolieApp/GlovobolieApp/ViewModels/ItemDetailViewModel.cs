@@ -43,15 +43,17 @@ namespace GlovobolieApp.ViewModels
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id.ToString();
-                Text = item.Description;
-                Description = item.Description;
+               //TODO
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
             }
+        }
+
+        protected override void InitDependencies()
+        {
+            throw new NotImplementedException();
         }
     }
 }

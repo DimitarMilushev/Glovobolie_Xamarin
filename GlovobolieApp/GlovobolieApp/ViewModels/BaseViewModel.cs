@@ -8,8 +8,10 @@ using Xamarin.Forms;
 
 namespace GlovobolieApp.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        protected abstract void InitDependencies();
+
         bool isBusy = false;
         public bool IsBusy
         {

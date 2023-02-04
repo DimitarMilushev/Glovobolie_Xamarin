@@ -14,5 +14,10 @@ namespace GlovobolieApp.ViewModels
         }
 
         public ICommand OpenWebCommand { get; }
+
+        protected override void InitDependencies()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

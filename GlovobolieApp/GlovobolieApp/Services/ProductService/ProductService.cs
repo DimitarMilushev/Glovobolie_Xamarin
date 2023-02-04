@@ -1,5 +1,6 @@
 ﻿using GlovobolieApp.Artifacts.RepositoryService;
 using GlovobolieApp.Models;
+using GlovobolieApp.Services;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
@@ -9,18 +10,14 @@ using Xamarin.Forms;
 
 namespace GlovobolieApp.Artifacts.ProductService
 {
-    public class ProductService
+    public class ProductService : DataServiceBase, IProductService
     {
-        private MySqlConnection connection;
-        public ProductService()
-        {
-            connection = DependencyService.Get<Repository>().connection;
-        }
-
         public Task<List<Product>> GetProductsAsync() => Task.Run<List<Product>>(this.GetProducts);
 
+        // Synchronized methods - MySQL has bad support for Aync calls.
+
         private List<Product> GetProducts()
-        {   
+        {
             List<Product> products = new List<Product>();
             try
             {

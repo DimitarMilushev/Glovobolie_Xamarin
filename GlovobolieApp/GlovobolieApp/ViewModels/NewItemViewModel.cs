@@ -55,11 +55,15 @@ namespace GlovobolieApp.ViewModels
                 Title = Text,
                 Description = Description
             };
-
-            await DataStore.AddItemAsync(newItem);
+            //await DataStore.AddItemAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
+        }
+
+        protected override void InitDependencies()
+        {
+            throw new NotImplementedException();
         }
     }
 }

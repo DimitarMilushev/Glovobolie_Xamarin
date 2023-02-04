@@ -1,6 +1,7 @@
 ﻿using GlovobolieApp.Artifacts.ProductService;
 using GlovobolieApp.Artifacts.RepositoryService;
 using GlovobolieApp.Services;
+using GlovobolieApp.Services.ProductService;
 using GlovobolieApp.Views;
 using System;
 using Xamarin.Forms;
@@ -16,8 +17,16 @@ namespace GlovobolieApp
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            DependencyService.RegisterSingleton<Repository>(new Repository());
-            DependencyService.Register<ProductService>();
+            //TODO: Change based on environment
+            if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
+            {
+                DependencyService.Register<ProductServiceMock>();
+            }
+            else
+            {
+                DependencyService.RegisterSingleton<Repository>(new Repository());
+                DependencyService.Register<ProductService>();
+            }
             MainPage = new AppShell();
         }
 
