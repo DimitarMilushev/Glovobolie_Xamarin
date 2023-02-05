@@ -19,6 +19,8 @@ namespace GlovobolieApp.ViewModels
         public Command LoadProductsCommand { get; }
         public Command AddProductCommand { get; }
         public Command<Product> ItemTapped { get; }
+        public Command DismissPopupCommand { get; }
+        public Command ClosePopupTapped { get; }
 
         private IProductService productService;
         public ProductsViewModel() : base()
@@ -28,6 +30,8 @@ namespace GlovobolieApp.ViewModels
             LoadProductsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             ItemTapped = new Command<Product>(OnItemSelected);
+            DismissPopupCommand = new Command(this.DismissProductPopup);
+            ClosePopupTapped = new Command<object>(this.OnCloseModalTapped);
 
             AddProductCommand = new Command(OnAddItem);
             Task.Run(this.ExecuteLoadItemsCommand);
@@ -41,7 +45,8 @@ namespace GlovobolieApp.ViewModels
             {
                 Items.Clear();
                 var newItems = await productService.GetProductsAsync();
-                foreach ( var item in newItems ) { 
+                foreach (var item in newItems)
+                {
                     Items.Add(item);
                 }
             }
@@ -59,30 +64,47 @@ namespace GlovobolieApp.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
-        }   
+        }
 
         public Product SelectedItem
         {
             get => _selectedItem;
             set
             {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
+                SetProperty(
+                    ref _selectedItem, 
+                    value, 
+                    nameof(SelectedItem), 
+                    () => OnPropertyChanged(nameof(HasSelectedItem))
+                );
             }
         }
+        public bool HasSelectedItem { get => this._selectedItem != null; }
 
         private async void OnAddItem(object obj)
         {
-           // await Shell.Current.GoToAsync(nameof(NewItemPage));
+            // await Shell.Current.GoToAsync(nameof(NewItemPage));
+        }
+        private void DismissProductPopup()
+        {
+            this.SelectedItem = null;
+            Debug.WriteLine("Dismissed product popup");
+        }
+        // Animates closing of the pop-up
+        private async void OnCloseModalTapped(object sender)
+        {
+            var button = sender as ImageButton;
+            await button.RotateTo(180, 500, Easing.CubicInOut);
+            this.DismissProductPopup();
         }
 
-        async void OnItemSelected(Product item)
+        void OnItemSelected(Product item)
         {
-            if (item == null)
-                return;
+            this.SelectedItem = item;
+            Debug.WriteLine($"Selected item {item.Title}");
 
             // This will push the ItemDetailPage onto the navigation stack
-        //    await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            //    await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
 
         protected override void InitDependencies()

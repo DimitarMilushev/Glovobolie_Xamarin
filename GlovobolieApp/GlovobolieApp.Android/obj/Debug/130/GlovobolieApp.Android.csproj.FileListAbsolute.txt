@@ -648,3 +648,4 @@ E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android\assets\SQLitePCLRaw.core.dll
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android\assets\SQLitePCLRaw.lib.e_sqlite3.android.dll
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android\assets\SQLitePCLRaw.provider.e_sqlite3.dll
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_close.png

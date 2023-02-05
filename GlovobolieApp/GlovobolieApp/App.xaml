@@ -8,20 +8,21 @@
     <Application.Resources>
             <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-                <Color x:Key="Primary">#FFB100</Color>
+            <Color x:Key="Primary">#FFB100</Color>
             <Color x:Key="Secondary">#FBC252</Color>
             <Color x:Key="BackgroundPrimary">#F0ECCF</Color>
             <Color x:Key="BackgroundSecondary">#A3BB98</Color>
             <Color x:Key="PrimaryTextColor">White</Color>
-            <Color x:Key="SecondaryTextColor">White</Color>
+            <Color x:Key="SecondaryTextColor">Black</Color>
             <Color x:Key="TertiaryTextColor">WhiteSmoke</Color>
             <Color x:Key="TransparentColor">Transparent</Color>
-            <!-- 
-                Labels
-            -->
+            <Color x:Key="Error">#eb5234</Color>
+
+            <!--  Labels  -->
             <Style x:Key="TextLarge" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
                 <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
             </Style>
             <Style x:Key="TextMedium" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
@@ -31,14 +32,54 @@
                 <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
                 <Setter Property="FontSize" Value="12"></Setter>
             </Style>
-            <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
+            <!--  Labels Secondary -->
+            <Style x:Key="TextLargeSecondary" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"/>
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+            <Style x:Key="TextMediumSecondary" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"/>
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+            <Style x:Key="TextSmallSecondary" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"/>
+                <Setter Property="FontSize" Value="12"></Setter>
+            </Style>
+            <!-- Buttons -->
+            <Style x:Key="ButtonPrimary" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"></Setter>
+                <Setter Property="HeightRequest" Value="64"/>
+                <Setter Property="WidthRequest" Value="168"/>
+                <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource BackgroundSecondary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource TertiaryTextColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="ButtonSecondary" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"></Setter>
+                <Setter Property="HeightRequest" Value="64"/>
+                <Setter Property="WidthRequest" Value="168"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource BackgroundSecondary}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
