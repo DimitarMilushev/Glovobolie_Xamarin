@@ -76,8 +76,7 @@
             <BoxView
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                 AbsoluteLayout.LayoutFlags="SizeProportional"
-                BackgroundColor="Black"
-                Opacity="0.5"
+                Style="{StaticResource LoaderBackground}"
                 >
                 <BoxView.GestureRecognizers>
                     <TapGestureRecognizer

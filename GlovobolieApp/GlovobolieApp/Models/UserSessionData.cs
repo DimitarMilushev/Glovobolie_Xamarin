@@ -8,13 +8,15 @@ namespace GlovobolieApp.Models
     {
         public int Id { get; }
         public string Email { get; }
+        public PersonalData PersonalData { get; }
         public ICollection<Product> Cart { get; }
 
-        public UserSessionData(int id, string email, ICollection<Product> cart)
+        public UserSessionData(int id, string email, ICollection<Product> cart, PersonalData personalData)
         {
             Id = id;
             Email = email;
             Cart = cart;
+            PersonalData = personalData;
         }
     }
 }

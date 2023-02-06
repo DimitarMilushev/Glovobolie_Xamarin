@@ -48,7 +48,10 @@
             </Style>
             <!-- Buttons -->
             <Style x:Key="ButtonPrimary" TargetType="Button">
-                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+
                 <Setter Property="HeightRequest" Value="64"/>
                 <Setter Property="WidthRequest" Value="168"/>
                 <Setter Property="CornerRadius" Value="20"/>
@@ -57,7 +60,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource BackgroundSecondary}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
@@ -70,7 +73,10 @@
                 </Setter>
             </Style>
             <Style x:Key="ButtonSecondary" TargetType="Button">
-                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"></Setter>
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                
                 <Setter Property="HeightRequest" Value="64"/>
                 <Setter Property="WidthRequest" Value="168"/>
                 <Setter Property="CornerRadius" Value="20"/>
@@ -91,6 +97,21 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Style x:Key="TextButton" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Setter Property="Padding" Value="12"/>
+            </Style>
+            <!-- Loader -->
+            <Style x:Key="LoaderBackground" TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="Opacity" Value="0.5"/>
+            </Style>
+
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

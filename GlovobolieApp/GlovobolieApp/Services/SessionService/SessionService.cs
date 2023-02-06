@@ -10,21 +10,21 @@ namespace GlovobolieApp.Services
         private static SessionService instance;
         private static readonly object padlock = new object();
 
-        public UserSessionData data { get; private set; }
+        public UserSessionData Data { get; private set; }
 
         private SessionService() { }
 
-        public void UpdateSession(int id, string username)
+        public void UpdateSession(int id, string username, PersonalData personalData)
         {
             if (username == null) return;
-            data = new UserSessionData(id, username, new List<Product>());
+            Data = new UserSessionData(id, username, new List<Product>(), personalData);
         }
 
         public void DisposeSession()
         {
-            if (data != null)
+            if (Data != null)
             {
-                data = null;
+                Data = null;
             }
         }
 

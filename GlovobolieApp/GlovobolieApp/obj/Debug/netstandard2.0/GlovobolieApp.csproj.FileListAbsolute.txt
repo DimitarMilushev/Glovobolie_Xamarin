@@ -21,3 +21,4 @@ E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\Glov
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\GlovobolieApp.pdb
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\XamlC.stamp
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\ref\GlovobolieApp.dll
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\SignUpPage.xaml.g.cs

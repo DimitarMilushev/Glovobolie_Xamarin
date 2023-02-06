@@ -1,6 +1,7 @@
 ﻿using GlovobolieApp.Artifacts.ProductService;
 using GlovobolieApp.Artifacts.RepositoryService;
 using GlovobolieApp.Services;
+using GlovobolieApp.Services.AuthService;
 using GlovobolieApp.Services.ProductService;
 using GlovobolieApp.Views;
 using System;
@@ -15,12 +16,13 @@ namespace GlovobolieApp
         public App()
         {
             InitializeComponent();
+            DependencyService.RegisterSingleton<SessionService>(SessionService.Instance);
 
-            DependencyService.Register<MockDataStore>();
             //TODO: Change based on environment
             if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
             {
                 DependencyService.Register<ProductServiceMock>();
+                DependencyService.Register<AuthServiceMock>();
             }
             else
             {
