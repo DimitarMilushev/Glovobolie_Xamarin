@@ -111,7 +111,7 @@
                 <Setter Property="BackgroundColor" Value="Black"/>
                 <Setter Property="Opacity" Value="0.5"/>
             </Style>
-
+           
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

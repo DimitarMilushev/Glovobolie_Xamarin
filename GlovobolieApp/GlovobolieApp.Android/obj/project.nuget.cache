@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "q8izSXf977oFeluvXnSogSPy3Z7rEgPYmamJtU8LyL2L7a4aqBoObkrtjkIYRdLmbjoxb93cPzUQ+jLfpul1Bg==",
+  "dgSpecHash": "MYjULcqxp27sKckWauhG0pxKf2cEe7d1xrWNUbQ/wNShGA2J9osg8O47wg4n+wBqfkok1vjUbQ6V7O+YrwzcHQ==",
   "success": true,
   "projectFilePath": "E:\\repos\\GlovobolieApp\\GlovobolieApp\\GlovobolieApp.Android\\GlovobolieApp.Android.csproj",
   "expectedPackageFiles": [
@@ -68,8 +68,10 @@
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.androidx.versionedparcelable\\1.1.1.8\\xamarin.androidx.versionedparcelable.1.1.1.8.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.androidx.viewpager\\1.0.0.8\\xamarin.androidx.viewpager.1.0.0.8.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.androidx.viewpager2\\1.0.0.10\\xamarin.androidx.viewpager2.1.0.0.10.nupkg.sha512",
-    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
-    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.communitytoolkit\\2.0.5\\xamarin.communitytoolkit.2.0.5.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.communitytoolkit.markup\\2.0.5\\xamarin.communitytoolkit.markup.2.0.5.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.essentials\\1.7.4\\xamarin.essentials.1.7.4.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.forms\\5.0.0.2545\\xamarin.forms.5.0.0.2545.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.google.android.material\\1.4.0.2\\xamarin.google.android.material.1.4.0.2.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.google.guava.listenablefuture\\1.0.0.2\\xamarin.google.guava.listenablefuture.1.0.0.2.nupkg.sha512"
   ],

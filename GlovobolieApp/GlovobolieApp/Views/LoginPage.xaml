@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:GlovobolieApp.ViewModels"
+             xmlns:xcl="http://xamarin.com/schemas/2020/toolkit"
              mc:Ignorable="d"
              x:Class="GlovobolieApp.Views.LoginPage"
              Shell.NavBarIsVisible="False">
@@ -26,7 +27,18 @@
                 FontAttributes="Bold"
                 TextColor="{StaticResource SecondaryTextColor}"
                 />
-            <Entry/>
+            <Entry
+                x:Name="Email"
+                Text="{Binding UserName, Mode=TwoWay}"
+                Placeholder="Email"
+                />
+            <Entry
+                x:Name="Password"
+                Text="{Binding Password, Mode=TwoWay}"
+                IsPassword="True"
+                Placeholder="Password"
+                />
+            <Label IsVisible="{Binding HasError}" Text="{Binding ErrorMessage}" TextColor="{StaticResource Error}"/>
             <Button 
                 Text="Login"
                 Command="{Binding LoginCommand}"

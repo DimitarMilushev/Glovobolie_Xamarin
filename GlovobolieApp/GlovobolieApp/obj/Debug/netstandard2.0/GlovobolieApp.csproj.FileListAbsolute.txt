@@ -1,3 +1,6 @@
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\GlovobolieApp.deps.json
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\GlovobolieApp.dll
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\GlovobolieApp.pdb
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\GlovobolieApp.csproj.AssemblyReference.cache
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\GlovobolieApp.GeneratedMSBuildEditorConfig.editorconfig
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\App.xaml.g.cs
@@ -8,17 +11,14 @@ E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\View
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\ItemDetailPage.xaml.g.cs
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\LoginPage.xaml.g.cs
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\NewItemPage.xaml.g.cs
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\ProductsListPage.xaml.g.cs
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\ProfilePage.xaml.g.cs
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\SignUpPage.xaml.g.cs
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\GlovobolieApp.AssemblyInfoInputs.cache
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\GlovobolieApp.AssemblyInfo.cs
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\GlovobolieApp.csproj.CoreCompileInputs.cache
-E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\ProductsListPage.xaml.g.cs
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\XamlC.stamp
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\GlovobolieApp.dll
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\refint\GlovobolieApp.dll
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\GlovobolieApp.pdb
-E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\GlovobolieApp.deps.json
-E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\GlovobolieApp.dll
-E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\bin\Debug\netstandard2.0\GlovobolieApp.pdb
-E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\XamlC.stamp
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\ref\GlovobolieApp.dll
-E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp\obj\Debug\netstandard2.0\Views\SignUpPage.xaml.g.cs

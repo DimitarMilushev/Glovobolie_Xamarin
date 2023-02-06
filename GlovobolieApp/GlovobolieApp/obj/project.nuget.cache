@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+LPw1aDHnD3zb0N56Sm14LL1XIzWnMbQlsEaeeVUCIkHbT0RrtRz9bWw0EyHbFYPhz+xXIYrr6tLBrKoi867Ig==",
+  "dgSpecHash": "5mdNZBUFql/Z8mWAofbLQBwsoFDc+RvWOhl2x4TZprJi5f7/mZqU2i5U+4WvPyuzxbS9Wx/UeZj5rZr0zWFjhg==",
   "success": true,
   "projectFilePath": "E:\\repos\\GlovobolieApp\\GlovobolieApp\\GlovobolieApp\\GlovobolieApp.csproj",
   "expectedPackageFiles": [
@@ -16,10 +16,14 @@
     "C:\\Users\\Me Only\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.essentials\\1.7.0\\xamarin.essentials.1.7.0.nupkg.sha512",
-    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.forms\\5.0.0.2196\\xamarin.forms.5.0.0.2196.nupkg.sha512"
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.communitytoolkit\\2.0.5\\xamarin.communitytoolkit.2.0.5.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.communitytoolkit.markup\\2.0.5\\xamarin.communitytoolkit.markup.2.0.5.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.essentials\\1.7.4\\xamarin.essentials.1.7.4.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.forms\\5.0.0.2545\\xamarin.forms.5.0.0.2545.nupkg.sha512"
   ],
   "logs": []
 }
