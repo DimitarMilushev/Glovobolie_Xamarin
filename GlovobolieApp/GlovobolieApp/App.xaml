@@ -79,18 +79,23 @@
                 
                 <Setter Property="HeightRequest" Value="64"/>
                 <Setter Property="WidthRequest" Value="168"/>
+                <Setter Property="BorderWidth"  Value="2" />
+
                 <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource BackgroundSecondary}" />
+                                    <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{StaticResource TertiaryTextColor}" />
+                                    <Setter Property="BorderColor" Value="{StaticResource Secondary}" />
+                                    <Setter Property="Opacity" Value="0.5" />
+                                    <Setter Property="BackgroundColor" Value="{StaticResource TransparentColor}" />
                                 </VisualState.Setters>
                             </VisualState>
                         </VisualStateGroup>

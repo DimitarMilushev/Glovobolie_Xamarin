@@ -41,7 +41,7 @@ namespace GlovobolieApp.ViewModels
         }
 
         private async void OnSignUpClicked() => await Shell.Current.GoToAsync(nameof(SignUpPage));
-        private async void OnLoginClicked(object obj)
+        private async void OnLoginClicked()
         {
 
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one

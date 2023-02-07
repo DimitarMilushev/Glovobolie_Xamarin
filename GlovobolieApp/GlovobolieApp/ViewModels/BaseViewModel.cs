@@ -53,6 +53,13 @@ namespace GlovobolieApp.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        /**
+         * Fixes issue with labels not updating
+         */
+        protected void ForceUpdateUI()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+        }
         #endregion
     }
 }

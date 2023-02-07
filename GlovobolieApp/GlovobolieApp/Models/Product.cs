@@ -1,6 +1,4 @@
 ﻿
-using SQLite;
-
 namespace GlovobolieApp.Models
 {
     public class Product
