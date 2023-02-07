@@ -55,6 +55,7 @@
                 </Label.GestureRecognizers>
             </Label>
         </StackLayout>
+        <!-- Loader with background -->
         <BoxView
                 IsVisible="{Binding IsBusy}"
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"

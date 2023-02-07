@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace GlovobolieApp.ViewModels
@@ -15,14 +17,17 @@ namespace GlovobolieApp.ViewModels
     public class ProductsViewModel : BaseViewModel
     {
         private Product _selectedItem;
+        private int _cartItemsCount;
         public ObservableCollection<Product> Items { get; }
         public Command LoadProductsCommand { get; } 
         public Command AddProductCommand { get; }
         public Command<Product> ItemTapped { get; }
         public Command DismissPopupCommand { get; }
         public Command ClosePopupTapped { get; }
+        public Command GoToCartTapped { get; }
 
         private IProductService productService;
+        private SessionService sessionService;
         public ProductsViewModel() : base()
         {
             Title = "Products";
@@ -32,10 +37,27 @@ namespace GlovobolieApp.ViewModels
             ItemTapped = new Command<Product>(OnItemSelected);
             DismissPopupCommand = new Command(this.DismissProductPopup);
             ClosePopupTapped = new Command<object>(this.OnCloseModalTapped);
+            GoToCartTapped = new Command(this.OnGoToCartTapped);
 
             AddProductCommand = new Command(OnAddItem);
+            this.CartItemsCount = this.sessionService.Data.Cart.Count;
             Task.Run(this.ExecuteLoadItemsCommand);
         }
+
+        public int CartItemsCount { 
+            get => this._cartItemsCount;
+            set 
+            {
+                SetProperty(
+                   ref _cartItemsCount,
+                   value,
+                   nameof(CartItemsCount),
+                   () => OnPropertyChanged(nameof(HasCartItems))
+               );
+            }
+        }
+        public bool HasCartItems { get => this._cartItemsCount > 0; }
+        private async void OnGoToCartTapped() => await Shell.Current.GoToAsync(nameof(CartPage));
 
         async Task ExecuteLoadItemsCommand()
         {
@@ -60,12 +82,6 @@ namespace GlovobolieApp.ViewModels
             }
         }
 
-        public void OnAppearing()
-        {
-            IsBusy = true;
-            SelectedItem = null;
-        }
-
         public Product SelectedItem
         {
             get => _selectedItem;
@@ -81,9 +97,20 @@ namespace GlovobolieApp.ViewModels
         }
         public bool HasSelectedItem { get => this._selectedItem != null; }
 
-        private async void OnAddItem(object obj)
+        private async void OnAddItem()
         {
-            // await Shell.Current.GoToAsync(nameof(NewItemPage));
+            var currentPage = Application.Current.MainPage;
+
+            if (this.SelectedItem == null)
+            {
+                this.DismissProductPopup();
+                await currentPage.DisplayToastAsync("Failed to add item to cart :(", 2000);
+                return;
+            }
+            this.sessionService.Data.Cart.Add(this.SelectedItem);
+            this.DismissProductPopup();
+            await currentPage.DisplayToastAsync("New item is added to your cart!", 1000);
+            this.CartItemsCount = this.sessionService.Data.Cart.Count;
         }
         private void DismissProductPopup()
         {
@@ -109,6 +136,7 @@ namespace GlovobolieApp.ViewModels
 
         protected override void InitDependencies()
         {
+            sessionService = DependencyService.Get<SessionService>();
             if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
             {
                 productService = DependencyService.Get<ProductServiceMock>();
