@@ -5,6 +5,7 @@ using GlovobolieApp.Services.AuthService;
 using GlovobolieApp.Services.ProductService;
 using GlovobolieApp.Views;
 using System;
+using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -30,6 +31,7 @@ namespace GlovobolieApp
                 DependencyService.Register<ProductService>();
             }
             MainPage = new AppShell();
+            CultureInfo.CurrentCulture = new CultureInfo("en-US");
         }
 
         protected override void OnStart()

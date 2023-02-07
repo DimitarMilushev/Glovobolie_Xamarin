@@ -16,7 +16,7 @@ namespace GlovobolieApp.ViewModels
     {
         private Product _selectedItem;
         public ObservableCollection<Product> Items { get; }
-        public Command LoadProductsCommand { get; }
+        public Command LoadProductsCommand { get; } 
         public Command AddProductCommand { get; }
         public Command<Product> ItemTapped { get; }
         public Command DismissPopupCommand { get; }

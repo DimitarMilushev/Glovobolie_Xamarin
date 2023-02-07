@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SxB8i2lujnqsA5YeXIVz9wVNtRWCtrKwRYY/UPTFFFbHBgaQxxWsOzGd/tfqyoIBBEgwLbMxAbpc3Siv0jiChA==",
+  "dgSpecHash": "VhCfAnI+oH+Ixv5qzq41OrmQUmajriXX/FqTQLP3bIgRgiHghZ/gGDcqZ5VndVw5GsAS4icgwoLxWsFX4HHH0Q==",
   "success": true,
   "projectFilePath": "E:\\repos\\GlovobolieApp\\GlovobolieApp\\GlovobolieApp.Android\\GlovobolieApp.Android.csproj",
   "expectedPackageFiles": [
@@ -54,6 +54,7 @@
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.androidx.versionedparcelable\\1.1.1.7\\xamarin.androidx.versionedparcelable.1.1.1.7.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.androidx.viewpager\\1.0.0.6\\xamarin.androidx.viewpager.1.0.0.6.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.androidx.viewpager2\\1.0.0.8\\xamarin.androidx.viewpager2.1.0.0.8.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.communitytoolkit\\1.2.0\\xamarin.communitytoolkit.1.2.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.essentials\\1.7.4\\xamarin.essentials.1.7.4.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.google.android.material\\1.2.1.1\\xamarin.google.android.material.1.2.1.1.nupkg.sha512",

@@ -15,7 +15,7 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <AbsoluteLayout x:Name="LayoutView">
+    <AbsoluteLayout x:Name="LayoutView" BackgroundColor="{StaticResource BackgroundPrimary}">
         <CollectionView x:Name="ItemsListView"
                 ItemsLayout="VerticalList"
                 ItemsSource="{Binding Items}"
@@ -41,13 +41,20 @@
                                     Aspect="AspectFill"
                                     VerticalOptions="FillAndExpand"/>
                         </Frame>
-                        <Label 
-                            Text="{Binding Title}"
-                            Padding="15, 0, 0, 10"
-                            LineBreakMode="NoWrap" 
-                            Style="{StaticResource TextMedium}" 
-                            FontSize="16" />
-                        <StackLayout.GestureRecognizers>
+                                <FlexLayout JustifyContent="SpaceBetween" Padding="12, 4">
+                                 <Label 
+                                     Text="{Binding Title}"
+                                     LineBreakMode="NoWrap" 
+                                     Style="{StaticResource TextMedium}" 
+                                     FontSize="16" />
+                                    <Label 
+                                     Text="{Binding Price, StringFormat='{0:C2}'}"
+                                     Padding="15, 0, 0, 10"
+                                     LineBreakMode="NoWrap" 
+                                     Style="{StaticResource TextMedium}" 
+                                     FontSize="16"/>
+                                </FlexLayout>
+                                <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:ProductsViewModel}}, Path=ItemTapped}"		
@@ -162,8 +169,7 @@
                                 <FormattedString>
                                     <FormattedString.Spans>
                                         <Span Text="Price: "/>
-                                        <Span Text="{Binding SelectedItem.Price}"/>
-                                        <Span Text="$"/>
+                                        <Span Text="{Binding SelectedItem.Price, StringFormat='{0:C2}'}"/>
                                     </FormattedString.Spans>
                                 </FormattedString>
                             </Label.FormattedText>
@@ -182,7 +188,7 @@
                 >
                 <Image 
                     Scale="0.5"
-                    Source="icon_cart.png"/>
+                    Source="icon_add_cart.png"/>
             </Frame>
         </AbsoluteLayout>
     </AbsoluteLayout>

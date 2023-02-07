@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6GzWoqRBOqf2dVX51QruWOMKIt21s+WDy1oGzHLRjV3akM6TEv41QEmWKxChw9FR72zFyE+EDuSEu8mjACPtAA==",
+  "dgSpecHash": "4iJ9zupExOWete9jfnByL4jHpS8BqbJ+iXe1tthzeslnoUKu/FCghSdxoa6vdUc/oiSnbY8JGEcws5c1NIpmEQ==",
   "success": true,
   "projectFilePath": "E:\\repos\\GlovobolieApp\\GlovobolieApp\\GlovobolieApp\\GlovobolieApp.csproj",
   "expectedPackageFiles": [
@@ -11,8 +11,11 @@
     "C:\\Users\\Me Only\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.7.0\\system.reflection.emit.ilgeneration.4.7.0.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.communitytoolkit\\1.2.0\\xamarin.communitytoolkit.1.2.0.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.essentials\\1.7.4\\xamarin.essentials.1.7.4.nupkg.sha512",
     "C:\\Users\\Me Only\\.nuget\\packages\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
   ],

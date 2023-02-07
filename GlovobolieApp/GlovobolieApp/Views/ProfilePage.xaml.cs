@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GlovobolieApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace GlovobolieApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentView
+    public partial class ProfilePage : ContentPage
     {
         public ProfilePage()
         {
             InitializeComponent();
+            BindingContext = new ProfileViewModel();
         }
     }
 }

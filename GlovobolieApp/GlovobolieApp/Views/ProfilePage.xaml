@@ -1,10 +1,130 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GlovobolieApp.ViewModels"
+             xmlns:xcl="http://xamarin.com/schemas/2020/toolkit"
              x:Class="GlovobolieApp.Views.ProfilePage">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
-</ContentView>
+    <ContentPage.BindingContext>
+        <local:ProfileViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Padding="24">
+        <StackLayout Padding="0, 0, 0, 24" HorizontalOptions="CenterAndExpand">
+            <Frame HeightRequest="128" WidthRequest="128" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="80" HasShadow="True" BorderColor="{StaticResource Secondary}">
+                <Image Source="icon_profile_user.png"  Aspect="Fill"/>
+            </Frame>
+            <Label Margin="0, 12" Style="{StaticResource TextLargeSecondary}">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span Text="Greetings, "/>
+                            <Span Text="{Binding UserData.FirstName}"/>
+                            <Span Text="!"/>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+        <xcl:Expander BackgroundColor="{StaticResource BackgroundPrimary}"  MinimumHeightRequest="64"  Padding="12,0"> 
+            <xcl:Expander.Header>
+                <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
+                    <Label Text="Login information:" Style="{StaticResource TextLargeSecondary}" Padding="12, 12"/>
+                    <Frame BackgroundColor="Transparent" Padding="0">
+                    <Image Source="icon_expand.png"
+                           VerticalOptions="CenterAndExpand"
+                           WidthRequest="32"
+                           HeightRequest="32">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image"
+                                 Binding="{Binding Source={RelativeSource AncestorType={x:Type xcl:Expander}}, Path=IsExpanded}"
+                                 Value="True">
+                                <Setter Property="Source"
+                                Value="icon_collapse.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    </Frame>
+                </FlexLayout>
+            </xcl:Expander.Header>
+            <xcl:Expander.ContentTemplate>
+                <DataTemplate>
+                    <StackLayout BindableLayout.ItemsSource="{Binding LoginInformation}" Padding="12, 0, 12, 12">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <BoxView HeightRequest="1" BackgroundColor="Black" Opacity="0.3"/>
+                                    <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center" Padding="0, 4" BackgroundColor="{StaticResource BackgroundPrimary}">
+                                        <Label FontAttributes="Bold">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="{Binding Key}"/>
+                                                        <Span Text=": "/>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding Value}"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </DataTemplate>
+            </xcl:Expander.ContentTemplate>
+            </xcl:Expander>
+        
+        <xcl:Expander 
+            BackgroundColor="{StaticResource BackgroundPrimary}"  
+            MinimumHeightRequest="64"  
+            Padding="12,0" 
+            IsExpanded="True"
+            >
+            <xcl:Expander.Header>
+                <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
+                    <Label Text="Personal information:" Style="{StaticResource TextLargeSecondary}" Padding="12, 12"/>
+                    <Frame BackgroundColor="Transparent" Padding="0">
+                        <Image Source="icon_expand.png"
+                           VerticalOptions="CenterAndExpand"
+                           WidthRequest="32"
+                           HeightRequest="32">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image"
+                                 Binding="{Binding Source={RelativeSource AncestorType={x:Type xcl:Expander}}, Path=IsExpanded}"
+                                 Value="True">
+                                    <Setter Property="Source"
+                                Value="icon_collapse.png" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                    </Frame>
+                </FlexLayout>
+            </xcl:Expander.Header>
+            <xcl:Expander.ContentTemplate>
+                <DataTemplate>
+                    <StackLayout BindableLayout.ItemsSource="{Binding PersonalInformation}" Padding="12, 0, 12, 12">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <BoxView HeightRequest="1" BackgroundColor="Black" Opacity="0.3"/>
+                                    <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center" Padding="0, 4" BackgroundColor="{StaticResource BackgroundPrimary}">
+                                        <Label FontAttributes="Bold">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="{Binding Key}"/>
+                                                        <Span Text=": "/>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding Value}"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </DataTemplate>
+            </xcl:Expander.ContentTemplate>
+        </xcl:Expander>
+    </StackLayout>
+</ContentPage>

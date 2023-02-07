@@ -34,7 +34,7 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="Login" ContentTemplate="{DataTemplate local:LoginPage}" Shell.TabBarIsVisible="False" />
+        <ShellContent Route="Login" ContentTemplate="{DataTemplate local:LoginPage}" />
         <ShellContent Title="SignUp" Route="SignUp" ContentTemplate="{DataTemplate local:SignUpPage}" IsVisible="False"/>
     </TabBar>
     

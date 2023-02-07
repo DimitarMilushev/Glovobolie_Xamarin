@@ -42,6 +42,10 @@
       "frameworks": {
         "monoandroid13.0": {
           "dependencies": {
+            "Xamarin.CommunityToolkit": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.7.4, )"
@@ -104,6 +108,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "Xamarin.CommunityToolkit": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             },
             "Xamarin.Essentials": {
               "target": "Package",
