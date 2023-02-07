@@ -28,7 +28,7 @@ namespace GlovobolieApp.Services.UserService
             throw new NotImplementedException();
         }
 
-        public Task SignUpAsync(string email, string password)
+        public Task SignUpAsync(string email, string password, PersonalData data)
         {
             throw new NotImplementedException();
         }

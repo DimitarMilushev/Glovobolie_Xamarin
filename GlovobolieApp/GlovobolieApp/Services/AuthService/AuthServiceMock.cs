@@ -22,26 +22,24 @@ namespace GlovobolieApp.Services.AuthService
 
             DependencyService.Get<SessionService>().UpdateSession(1, email, data);
         }
-        public async Task SignUpAsync(string email, string password)
+        public async Task SignUpAsync(string email, string password, PersonalData data)
         {
             if (await CheckEmail(email))
             {
                 throw new ValidationException("User already exists!");
             }
-            var data = await GetPersonalDataAsync(email);
-            DependencyService.Get<SessionService>().UpdateSession(1, email, data);
         }
         public Task<bool> CheckCredentials(string email, string password) =>
             Task.Run(() =>
             {
                 Thread.Sleep(1000);
-                return email == "test" && password == "test";
+                return email == "test@test.com" && password == "Tester01";
             });
         public Task<bool> CheckEmail(string email) =>
             Task.Run(() =>
                 {
                     Thread.Sleep(1000);
-                    return email == "test";
+                    return email == "test@test.com";
                 });
 
         public Task<PersonalData> GetPersonalDataAsync(string email)

@@ -3,13 +3,9 @@ using GlovobolieApp.Models;
 using GlovobolieApp.Services.AuthService;
 using GlovobolieApp.Services.UserService;
 using GlovobolieApp.Services.ValidationService;
+using GlovobolieApp.Views;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+
 using Xamarin.Forms;
 
 namespace GlovobolieApp.ViewModels
@@ -21,7 +17,8 @@ namespace GlovobolieApp.ViewModels
 
         public Command RegisterButtonCommand { get; }
         public Command BackButtonCommand { get; }
-        public User UserDTO { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public string LoginErrorMessage { get => this._loginErrorMessage;
         set
@@ -48,13 +45,19 @@ namespace GlovobolieApp.ViewModels
         }
         public bool HasPersonalDataError { get => this._personalDataErrorMessage != null; }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address{ get; set; }
+
         private IAuthService authService;
 		public SignUpViewModel ()
 		{
 			this.Title = "Register";
             RegisterButtonCommand = new Command(this.OnRegisterPressed);
             BackButtonCommand = new Command(this.OnBackPressed);
-            UserDTO = new User();
 		}
 
         private async void OnRegisterPressed()
@@ -70,10 +73,8 @@ namespace GlovobolieApp.ViewModels
             try
             {
                 this.IsBusy = true;
-                await Task.Run(() =>
-                {
-                    Thread.Sleep(1000);
-                });
+                await authService.SignUpAsync(Email, Password, new PersonalData(FirstName, LastName, Address, PhoneNumber, Country, City));
+                await Shell.Current.GoToAsync(nameof(LoginPage));
             } catch (Exception ex)
             {
                 if (ex is ValidationException)
@@ -95,52 +96,52 @@ namespace GlovobolieApp.ViewModels
         private void ValidateLoginInfo()
         {
 
-            if (ValidationService.ValidateEmail(this.UserDTO.Email) != null)
+            if (ValidationService.ValidateEmail(this.Email) != null)
             {
-                this.LoginErrorMessage = ValidationService.ValidateEmail(this.UserDTO.Email);
+                this.LoginErrorMessage = ValidationService.ValidateEmail(this.Email);
                 return;
             }
-            if (ValidationService.ValidatePassword(this.UserDTO.Password) != null)
+            if (ValidationService.ValidatePassword(this.Password) != null)
             {
-                this.LoginErrorMessage = ValidationService.ValidatePassword(this.UserDTO.Password);
+                this.LoginErrorMessage = ValidationService.ValidatePassword(this.Password);
                 return;
             }
-            if (ValidationService.ValidatePasswordsMatch(this.UserDTO.Password, this.ConfirmPassword) != null)
+            if (ValidationService.ValidatePasswordsMatch(this.Password, this.ConfirmPassword) != null)
             {
-                this.LoginErrorMessage = ValidationService.ValidatePasswordsMatch(this.UserDTO.Password, this.ConfirmPassword);
+                this.LoginErrorMessage = ValidationService.ValidatePasswordsMatch(this.Password, this.ConfirmPassword);
                 return;
             }
             this.LoginErrorMessage = null;
         }
         private void ValidatePersonalInfo() 
         {
-            if (ValidationService.ValidateNonNullable(nameof(UserDTO.FirstName), UserDTO.FirstName) != null) {
-                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(UserDTO.FirstName), UserDTO.FirstName);
+            if (ValidationService.ValidateNonNullable(nameof(FirstName), FirstName) != null) {
+                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(FirstName), FirstName);
                 return;
             }
-            if (ValidationService.ValidateNonNullable(nameof(UserDTO.LastName), UserDTO.LastName) != null)
+            if (ValidationService.ValidateNonNullable(nameof(LastName), LastName) != null)
             {
-                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(UserDTO.LastName), UserDTO.LastName);
+                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(LastName), LastName);
                 return;
             }
-            if (ValidationService.ValidateNonNullable(nameof(UserDTO.Country), UserDTO.Country) != null)
+            if (ValidationService.ValidateNonNullable(nameof(Country), Country) != null)
             {
-                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(UserDTO.Country), UserDTO.Country);
+                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(Country), Country);
                 return;
             }
-            if (ValidationService.ValidateNonNullable(nameof(UserDTO.City), UserDTO.City) != null)
+            if (ValidationService.ValidateNonNullable(nameof(City), City) != null)
             {
-                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(UserDTO.City), UserDTO.City);
+                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(City), City);
                 return;
             }
-            if (ValidationService.ValidateNonNullable(nameof(UserDTO.PhoneNumber), UserDTO.PhoneNumber) != null)
+            if (ValidationService.ValidateNonNullable(nameof(PhoneNumber), PhoneNumber) != null)
             {
-                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(UserDTO.PhoneNumber), UserDTO.PhoneNumber);
+                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(PhoneNumber), PhoneNumber);
                 return;
             }
-            if (ValidationService.ValidateNonNullable(nameof(UserDTO.Address), UserDTO.Address) != null)
+            if (ValidationService.ValidateNonNullable(nameof(Address), Address) != null)
             {
-                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(UserDTO.Address), UserDTO.Address);
+                this.PersonalDataErrorMessage = ValidationService.ValidateNonNullable(nameof(Address), Address);
                 return;
             }
             this.PersonalDataErrorMessage = null;

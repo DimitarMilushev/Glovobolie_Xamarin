@@ -1,6 +1,7 @@
 ﻿using GlovobolieApp.Exceptions;
 using GlovobolieApp.Services.AuthService;
 using GlovobolieApp.Services.UserService;
+using GlovobolieApp.Services.ValidationService;
 using GlovobolieApp.Views;
 using System;
 using System.Diagnostics;
@@ -44,11 +45,16 @@ namespace GlovobolieApp.ViewModels
         private async void OnLoginClicked()
         {
 
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            this.ValidateForm();
+            if (this.ErrorMessage != null)
+            {
+                this.ForceUpdateUI();
+                return;
+            }
             try
             {
                 this.IsBusy = true;
-                await authService.LoginAsync(Title, Password);
+                await authService.LoginAsync(UserName, Password);
                 await Shell.Current.GoToAsync(nameof(ProductsListPage));
             }
             catch (Exception ex)
@@ -66,6 +72,20 @@ namespace GlovobolieApp.ViewModels
             {
                 this.IsBusy = false;
             }
+        }
+        private void ValidateForm()
+        {
+            if (ValidationService.ValidateEmail(UserName) != null)
+            {
+                this.ErrorMessage = ValidationService.ValidateEmail(UserName);
+                return;
+            }
+            if (ValidationService.ValidatePassword(Password) != null)
+            {
+                this.ErrorMessage = ValidationService.ValidatePassword(Password);
+                return;
+            }
+            this.ErrorMessage = null;
         }
 
         protected override void InitDependencies()

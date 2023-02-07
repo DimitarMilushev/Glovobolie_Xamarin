@@ -17,23 +17,23 @@
                          WidthRequest="336">
                 <StackLayout>
                     <Label Text="Login information:" Style="{StaticResource TextLargeSecondary}" Margin="0, 0, 0, 15"/>
-                    <Entry x:Name="Email" Placeholder="Email" Text="{Binding UserDTO.Email, Mode=OneWayToSource}"/>
-                    <Entry x:Name="Password" Placeholder="Password" Text="{Binding UserDTO.Password, Mode=OneWayToSource}"/>
-                    <Entry x:Name="Confirm_Password" Placeholder="Confirm Password" Text="{Binding ConfirmPassword, Mode=OneWayToSource}"/>
+                    <Entry x:Name="Email" Placeholder="Email" Text="{Binding Email, Mode=OneWayToSource}"/>
+                    <Entry x:Name="Password" Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=OneWayToSource}"/>
+                    <Entry x:Name="Confirm_Password" Placeholder="Confirm Password" IsPassword="True" Text="{Binding ConfirmPassword, Mode=OneWayToSource}"/>
                     <Label IsVisible="{Binding HasLoginError}" Text="{Binding LoginErrorMessage}" TextColor="{StaticResource Error}"/>
 
                 </StackLayout>
                 <BoxView BackgroundColor="Black" Opacity="0.3" HeightRequest="2" HorizontalOptions="FillAndExpand" Margin="0, 64"/>
                 <StackLayout>
                     <Label Text="Personal information:" Style="{StaticResource TextLargeSecondary}" Margin="0, 0, 0, 15"/>
-                    <Entry x:Name="First_Name" Placeholder="First Name" Text="{Binding UserDTO.FirstName, Mode=OneWayToSource}"/>
-                    <Entry x:Name="Last_Name" Placeholder="Last Name" Text="{Binding UserDTO.LastName, Mode=OneWayToSource}"/>
+                    <Entry x:Name="First_Name" Placeholder="First Name" Text="{Binding FirstName, Mode=OneWayToSource}"/>
+                    <Entry x:Name="Last_Name" Placeholder="Last Name" Text="{Binding LastName, Mode=OneWayToSource}"/>
                     <StackLayout Orientation="Horizontal">
-                        <Entry x:Name="Country" Placeholder="Country" WidthRequest="168" Text="{Binding UserDTO.Country, Mode=OneWayToSource}"/>
-                        <Entry x:Name="City" Placeholder="City" WidthRequest="168" Text="{Binding UserDTO.City, Mode=OneWayToSource}"/>
+                        <Entry x:Name="Country" Placeholder="Country" WidthRequest="168" Text="{Binding Country, Mode=OneWayToSource}"/>
+                        <Entry x:Name="City" Placeholder="City" WidthRequest="168" Text="{Binding City, Mode=OneWayToSource}"/>
                     </StackLayout>
-                    <Entry x:Name="Phone_Number" Placeholder="Phone number" Text="{Binding UserDTO.PhoneNumber, Mode=OneWayToSource}"/>
-                    <Entry x:Name="Address" Placeholder="Address" HorizontalOptions="FillAndExpand" Text="{Binding UserDTO.Address, Mode=OneWayToSource}"/>
+                    <Entry x:Name="Phone_Number" Placeholder="Phone number" Text="{Binding PhoneNumber, Mode=OneWayToSource}"/>
+                    <Entry x:Name="Address" Placeholder="Address" HorizontalOptions="FillAndExpand" Text="{Binding Address, Mode=OneWayToSource}"/>
                     <Label IsVisible="{Binding HasPersonalDataError}" Text="{Binding PersonalDataErrorMessage}" TextColor="{StaticResource Error}"/>
                 </StackLayout>
                 <FlexLayout x:Name="Actions" Margin="0, 32, 0, 0" HorizontalOptions="FillAndExpand" JustifyContent="SpaceBetween">

@@ -9,7 +9,7 @@ namespace GlovobolieApp.Services.UserService
     interface IAuthService
     {
         Task LoginAsync(string email, string password);
-        Task SignUpAsync(string email, string password);
+        Task SignUpAsync(string email, string password, PersonalData data);
         Task<bool> CheckCredentials(string email, string password);
         Task<bool> CheckEmail(string email);
         Task<PersonalData> GetPersonalDataAsync(string email);
