@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GlovobolieApp.ViewModels"
              xmlns:xcl="http://xamarin.com/schemas/2020/toolkit"
+             Title="{Binding Title}"
              x:Class="GlovobolieApp.Views.CartPage">
     <ContentPage.BindingContext>
         <local:CartViewModel/>
@@ -10,36 +11,74 @@
     <AbsoluteLayout>
         <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1, 1, 1, 1">
             <StackLayout Padding="24">
-                <StackLayout BindableLayout.ItemsSource="{Binding Products}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <xcl:Expander>
-                                <xcl:Expander.Header>
-                                    <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
-                                        <Label Text="{Binding Title}" Style="{StaticResource TextLargeSecondary}" Padding="12, 12"/>
-                                        <Frame BackgroundColor="Transparent" Padding="0">
-                                            <Image Source="icon_expand.png"
-                                   VerticalOptions="CenterAndExpand"
-                                   WidthRequest="32"
-                                   HeightRequest="32">
-                                                <Image.Triggers>
-                                                    <DataTrigger TargetType="Image"
-                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type xcl:Expander}}, Path=IsExpanded}"
-                                         Value="True">
-                                                        <Setter Property="Source"
-                                        Value="icon_collapse.png" />
-                                                    </DataTrigger>
-                                                </Image.Triggers>
-                                            </Image>
-                                        </Frame>
-                                    </FlexLayout>
-                                </xcl:Expander.Header>
-                            </xcl:Expander>
-                        </DataTemplate>
+                <Grid HeightRequest="48">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="96"/>
+                        <ColumnDefinition Width="32"/>
+                        <ColumnDefinition Width="32"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Text="Title" Style="{StaticResource TextMediumSecondary}" FontAttributes="Bold" />
+                    <Label Grid.Column="1" Text="Price" Style="{StaticResource TextMediumSecondary}" FontAttributes="Bold"/>
+                    <Label Grid.Column="2" Text="#" Style="{StaticResource TextMediumSecondary}" FontAttributes="Bold"/>
+                </Grid>
+                <StackLayout BindableLayout.ItemsSource="{Binding Products}" VerticalOptions="StartAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                    <Grid HeightRequest="32" Padding="0, 10" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="96"/>
+                                            <ColumnDefinition Width="32"/>
+                                            <ColumnDefinition Width="32"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Text="{Binding Title}" Style="{StaticResource TextMediumSecondary}" VerticalOptions="EndAndExpand"/>
+                                    <Label Grid.Column="1" Text="{Binding Price, StringFormat='{0:C2}'}" Style="{StaticResource TextMediumSecondary}" VerticalOptions="EndAndExpand"/>
+                                    <Label Grid.Column="2" Text="{Binding Quantity}" Style="{StaticResource TextMediumSecondary}" VerticalOptions="EndAndExpand"/>
+                                        <ImageButton Grid.Column="3" 
+                                                 Source="icon_remove.png"
+                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:CartViewModel}}, Path=RemoveItemCommand}"
+                                                 CommandParameter="{Binding .}"
+                                                 BackgroundColor="Transparent"
+                                                 VerticalOptions="FillAndExpand"
+                                                 xcl:IconTintColorEffect.TintColor="{StaticResource Error}"
+                                                 />
+                                    </Grid>
+                            </DataTemplate>
                     </BindableLayout.ItemTemplate>
+                    <BindableLayout.EmptyView>
+                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                            <Label Text="Uh oh, no products left!"  FontSize="24" TextColor="Black" Opacity="0.7"/>
+                        </StackLayout>
+                    </BindableLayout.EmptyView>
                 </StackLayout>
-            <Button Command="{Binding CheckoutCommand}" Text="Checkout" Style="{StaticResource ButtonPrimary}" VerticalOptions="EndAndExpand"/>
-          </StackLayout>
+              
+                <StackLayout VerticalOptions="EndAndExpand" Margin="24">
+                    <StackLayout Padding="12">
+                        <Label Style="{StaticResource TextLargeSecondary}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Items: "/>
+                                        <Span Text="{Binding ItemsCount}"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Style="{StaticResource TextLargeSecondary}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="Total: "/>
+                                            <Span Text="{Binding Total, StringFormat='{0:C2}'}"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                    </StackLayout>
+                    <Button IsEnabled="{Binding HasItems}" Command="{Binding CheckoutCommand}" Text="Checkout" Style="{StaticResource ButtonPrimary}" VerticalOptions="EndAndExpand"/>
+                </StackLayout>
+            </StackLayout>
         </ScrollView>
         <!-- Loader with background -->
         <BoxView

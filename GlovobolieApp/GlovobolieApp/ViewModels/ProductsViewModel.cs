@@ -25,6 +25,7 @@ namespace GlovobolieApp.ViewModels
         public Command DismissPopupCommand { get; }
         public Command ClosePopupTapped { get; }
         public Command GoToCartTapped { get; }
+        public Command OnAppearingCommand { get; }
 
         private IProductService productService;
         private SessionService sessionService;
@@ -38,9 +39,8 @@ namespace GlovobolieApp.ViewModels
             DismissPopupCommand = new Command(this.DismissProductPopup);
             ClosePopupTapped = new Command<object>(this.OnCloseModalTapped);
             GoToCartTapped = new Command(this.OnGoToCartTapped);
-
             AddProductCommand = new Command(OnAddItem);
-            this.CartItemsCount = this.sessionService.Data.Cart.Count;
+            OnAppearingCommand = new Command(this.OnAppearing);
             Task.Run(this.ExecuteLoadItemsCommand);
         }
 
@@ -107,10 +107,10 @@ namespace GlovobolieApp.ViewModels
                 await currentPage.DisplayToastAsync("Failed to add item to cart :(", 2000);
                 return;
             }
-            this.sessionService.Data.Cart.Add(this.SelectedItem);
+           this.sessionService.Data.AddToCart(this.SelectedItem);
+          
             this.DismissProductPopup();
-            await currentPage.DisplayToastAsync("New item is added to your cart!", 1000);
-            this.CartItemsCount = this.sessionService.Data.Cart.Count;
+            this.CartItemsCount = this.sessionService.Data.CartItemsCount;
         }
         private void DismissProductPopup()
         {
@@ -132,6 +132,10 @@ namespace GlovobolieApp.ViewModels
 
             // This will push the ItemDetailPage onto the navigation stack
             //    await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+        }
+        public void OnAppearing()
+        {
+            this.CartItemsCount = this.sessionService.Data.CartItemsCount;
         }
 
         protected override void InitDependencies()

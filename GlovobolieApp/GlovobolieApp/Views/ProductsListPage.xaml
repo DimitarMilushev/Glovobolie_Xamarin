@@ -11,6 +11,12 @@
     <ContentPage.BindingContext>
         <local:ProductsViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Behaviors>
+        <xcl:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding OnAppearingCommand}"
+            />
+    </ContentPage.Behaviors>
 
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
@@ -86,7 +92,7 @@
                         xcl:IconTintColorEffect.TintColor="White"
                         Command="{Binding GoToCartTapped}"
                         BackgroundColor="Transparent"
-                        Scale="0.5"
+                        Padding="20"
                         Source="icon_cart.png">
                 </ImageButton>
                 <Frame 

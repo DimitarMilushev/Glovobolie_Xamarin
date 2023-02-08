@@ -9,5 +9,6 @@ namespace GlovobolieApp.Models
         public double Price { get; set; }
         public string ImageURL { get; set; }
         public double Rating { get; set; }
+        public int Quantity { get; set; }
     }
 }

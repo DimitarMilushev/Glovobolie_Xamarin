@@ -17,7 +17,7 @@ namespace GlovobolieApp.Services
         public void UpdateSession(int id, string username, PersonalData personalData)
         {
             if (username == null) return;
-            Data = new UserSessionData(id, username, new List<Product>(), personalData);
+            Data = new UserSessionData(id, username, new HashSet<Product>(), personalData);
         }
 
         public void DisposeSession()

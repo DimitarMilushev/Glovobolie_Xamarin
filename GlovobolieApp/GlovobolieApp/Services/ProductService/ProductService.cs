@@ -34,7 +34,8 @@ namespace GlovobolieApp.Artifacts.ProductService
                         Price = reader.GetDouble("price"),
                         ImageURL = reader.GetString("imageURL"),
                         Rating = reader.GetDouble("rating"),
-                    });
+                        Quantity = 1
+                    }); ;
                 }
             }
             catch (Exception e)

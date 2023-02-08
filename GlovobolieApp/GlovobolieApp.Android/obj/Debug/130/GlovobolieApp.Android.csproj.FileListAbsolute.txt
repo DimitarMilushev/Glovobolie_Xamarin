@@ -619,3 +619,4 @@ E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\android\src\crc645b8ccbad6ecd7dce\SideMenuViewRenderer.java
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_collapse.png
 E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_expand.png
+E:\repos\GlovobolieApp\GlovobolieApp\GlovobolieApp.Android\obj\Debug\130\res\drawable\icon_remove.png
