@@ -2,7 +2,9 @@
 using GlovobolieApp.Artifacts.RepositoryService;
 using GlovobolieApp.Services;
 using GlovobolieApp.Services.AuthService;
+using GlovobolieApp.Services.OrderService;
 using GlovobolieApp.Services.ProductService;
+using GlovobolieApp.Services.UserService;
 using GlovobolieApp.Views;
 using System;
 using System.Globalization;
@@ -17,6 +19,7 @@ namespace GlovobolieApp
         public App()
         {
             InitializeComponent();
+            // Environment insensitive
             DependencyService.RegisterSingleton<SessionService>(SessionService.Instance);
 
             //TODO: Change based on environment
@@ -24,11 +27,14 @@ namespace GlovobolieApp
             {
                 DependencyService.Register<ProductServiceMock>();
                 DependencyService.Register<AuthServiceMock>();
+                DependencyService.Register<OrderServiceMock>();
             }
             else
             {
                 DependencyService.RegisterSingleton<Repository>(new Repository());
+                DependencyService.Register<AuthService>();
                 DependencyService.Register<ProductService>();
+                DependencyService.Register<OrderService>();
             }
             MainPage = new AppShell();
             CultureInfo.CurrentCulture = new CultureInfo("en-US");

@@ -7,7 +7,6 @@
              xmlns:model="clr-namespace:GlovobolieApp.Models"  
              xmlns:xcl="http://xamarin.com/schemas/2020/toolkit"
              x:Name="ProductsPage">
-
     <ContentPage.BindingContext>
         <local:ProductsViewModel/>
     </ContentPage.BindingContext>
@@ -22,7 +21,7 @@
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <AbsoluteLayout x:Name="LayoutView" BackgroundColor="{StaticResource BackgroundPrimary}">
+    <AbsoluteLayout x:Name="LayoutView">
         <CollectionView x:Name="ItemsListView"
                 ItemsLayout="VerticalList"
                 ItemsSource="{Binding Items}"

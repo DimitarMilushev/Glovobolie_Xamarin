@@ -44,5 +44,11 @@ namespace GlovobolieApp.Services.AuthService
 
         public Task<PersonalData> GetPersonalDataAsync(string email)
         => Task.Run(() => new PersonalData("John", "Doe", "Blagoevgrad, Bul. Sv. sv. Kiril & Metodii 17", "0888 777 7777", "Bulgaria", "Blagoevgrad"));
+
+        public async Task LogoutAsync()
+        {
+            DependencyService.Get<SessionService>().DisposeSession();
+            await Shell.Current.GoToAsync("//Login");
+        }
     }
 }

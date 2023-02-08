@@ -43,5 +43,6 @@
         <!--<ShellContent Title="Cart" Icon="icon_cart.png" Route="Cart" ContentTemplate="{DataTemplate local:CartPage}" /> -->
         <ShellContent Title="History" Icon="icon_history.png" Route="History" ContentTemplate="{DataTemplate local:HistoryPage}" />
         <ShellContent Title="Profile" Icon="icon_profile.png" Route="Profile" ContentTemplate="{DataTemplate local:ProfilePage}" />
+        <ShellContent Title="About" Icon="icon_about.png" Route="About" ContentTemplate="{DataTemplate local:AboutPage}" />
     </TabBar>
 </Shell>

@@ -3,10 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GlovobolieApp.ViewModels"
              xmlns:xcl="http://xamarin.com/schemas/2020/toolkit"
+             Title="{Binding Title}"
              x:Class="GlovobolieApp.Views.ProfilePage">
     <ContentPage.BindingContext>
         <local:ProfileViewModel/>
     </ContentPage.BindingContext>
+    <ScrollView>
     <StackLayout Padding="24">
         <StackLayout Padding="0, 0, 0, 24" HorizontalOptions="CenterAndExpand">
             <Frame HeightRequest="128" WidthRequest="128" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="80" HasShadow="True" BorderColor="{StaticResource Secondary}">
@@ -126,5 +128,9 @@
                 </DataTemplate>
             </xcl:Expander.ContentTemplate>
         </xcl:Expander>
+        <RelativeLayout VerticalOptions="EndAndExpand" HorizontalOptions="Center" Margin="0, 4">
+            <Button Text="Logout" Style="{StaticResource ButtonSecondary}" Command="{Binding LogoutCommand}" />
+        </RelativeLayout>
     </StackLayout>
+    </ScrollView>
 </ContentPage>

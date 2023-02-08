@@ -12,21 +12,18 @@
         <local:LoginViewModel/>
     </ContentPage.BindingContext>
     
-    <AbsoluteLayout BackgroundColor="{StaticResource BackgroundPrimary}">
+    <AbsoluteLayout>
+        <Image 
+           AbsoluteLayout.LayoutBounds="0.5, 0.1"
+           AbsoluteLayout.LayoutFlags="PositionProportional"
+           Source="icon_header.png"
+           />
         <StackLayout 
             AbsoluteLayout.LayoutFlags="PositionProportional"
-            AbsoluteLayout.LayoutBounds="0.5, 0.5"
+            AbsoluteLayout.LayoutBounds="0.5, 0.8"
             HorizontalOptions="CenterAndExpand"
             WidthRequest="336"
             >
-            <Label 
-                Text="Welcome to Glovobolie!"
-                FontSize="40"
-                Margin="0, 128"
-                HorizontalTextAlignment="Center"
-                FontAttributes="Bold"
-                TextColor="{StaticResource SecondaryTextColor}"
-                />
             <Entry
                 x:Name="Email"
                 Text="{Binding UserName, Mode=TwoWay}"

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GlovobolieApp.Services.UserService
 {
@@ -31,6 +32,11 @@ namespace GlovobolieApp.Services.UserService
         public Task SignUpAsync(string email, string password, PersonalData data)
         {
             throw new NotImplementedException();
+        }
+        public async Task LogoutAsync()
+        {
+            DependencyService.Get<SessionService>().DisposeSession();
+            await Shell.Current.GoToAsync("//Login");
         }
     }
 }

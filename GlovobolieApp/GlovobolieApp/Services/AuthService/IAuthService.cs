@@ -13,5 +13,6 @@ namespace GlovobolieApp.Services.UserService
         Task<bool> CheckCredentials(string email, string password);
         Task<bool> CheckEmail(string email);
         Task<PersonalData> GetPersonalDataAsync(string email);
+        Task LogoutAsync();
     }
 }

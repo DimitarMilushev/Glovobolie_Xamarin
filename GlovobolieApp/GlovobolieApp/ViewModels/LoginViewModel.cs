@@ -48,7 +48,7 @@ namespace GlovobolieApp.ViewModels
             await Shell.Current.GoToAsync($"//Products");
 
             return;
-            this.ValidateForm();
+            this.ValidateForm(); // TODO: REMOVE
             if (this.ErrorMessage != null)
             {
                 this.ForceUpdateUI();

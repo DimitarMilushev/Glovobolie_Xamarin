@@ -10,8 +10,9 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <application android:name="android.app.Application" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:icon="@mipmap/icon" android:label="GlovobolieApp.Android" android:theme="@style/MainTheme">
-    <activity android:name="crc646f4bebf6792749a6.MainActivity" android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:exported="true" android:icon="@mipmap/icon" android:label="GlovobolieApp" android:screenOrientation="locked" android:theme="@style/MainTheme">
+  <application android:name="android.app.Application" android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:extractNativeLibs="true" android:label="GlovobolieApp.Android" android:theme="@style/MainTheme">
+    <activity android:name="crc646f4bebf6792749a6.MainActivity" android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:screenOrientation="locked" android:theme="@style/MainTheme" />
+    <activity android:name="crc646f4bebf6792749a6.SplashActivity" android:exported="true" android:icon="@drawable/icon_home_screen" android:label="GlovobolieApp" android:noHistory="true" android:theme="@style/MainTheme.Splash">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

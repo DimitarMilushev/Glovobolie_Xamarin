@@ -18,6 +18,7 @@ namespace GlovobolieApp
             Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
             Routing.RegisterRoute(nameof(CartPage), typeof(CartPage));
             Routing.RegisterRoute(nameof(HistoryPage), typeof(HistoryPage));
+            Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
         }
 
     }

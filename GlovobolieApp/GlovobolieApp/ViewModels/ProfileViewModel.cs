@@ -1,5 +1,7 @@
 ﻿using GlovobolieApp.Models;
 using GlovobolieApp.Services;
+using GlovobolieApp.Services.AuthService;
+using GlovobolieApp.Services.UserService;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,17 +11,24 @@ namespace GlovobolieApp.ViewModels
 {
     public class ProfileViewModel : BaseViewModel
     {
+        public Command LogoutCommand { get;  }
         public PersonalData UserData { get; private set; }
         public Dictionary<String, String> PersonalInformation { get; private set; }
         public Dictionary<String, String> LoginInformation { get; private set; }
 
-        private SessionService sessionService;
+        private SessionService _sessionService;
+        private IAuthService _authService;
         public ProfileViewModel() :base()
         {
-            this.UserData = sessionService.Data.PersonalData;
+            this.Title = "My Profile";
+            this.UserData = _sessionService.Data.PersonalData;
             this.PersonalInformation = GetMappedPersonalInformation();
             this.LoginInformation = GetMappedLoginInformation();
+            this.LogoutCommand = new Command(OnLogoutTapped);
         }
+
+        private async void OnLogoutTapped() => await _authService.LogoutAsync();
+
         private Dictionary<String, String> GetMappedPersonalInformation()
         {
             return new Dictionary<String, String>
@@ -36,12 +45,19 @@ namespace GlovobolieApp.ViewModels
         {
             return new Dictionary<String, String>
             {
-                ["Email"] = sessionService.Data.Email
+                ["Email"] = _sessionService.Data.Email
             };
         }
         protected override void InitDependencies()
         {
-            this.sessionService = DependencyService.Get<SessionService>();
+            this._sessionService = DependencyService.Get<SessionService>();
+            if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
+            {
+                this._authService= DependencyService.Get<AuthServiceMock>();
+            } else
+            {
+                this._authService = DependencyService.Get<AuthService>();
+            }
         }
     }
 }

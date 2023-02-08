@@ -1,10 +1,101 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helper="clr-namespace:GlovobolieApp.Helpers"
+             xmlns:local="clr-namespace:GlovobolieApp.ViewModels"
+             xmlns:xcl="http://xamarin.com/schemas/2020/toolkit"
+             Title="{Binding Title}"
              x:Class="GlovobolieApp.Views.HistoryPage">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
-</ContentView>
+    <ContentPage.Resources>
+        <helper:StatusColorConverter x:Key="StatusColorConverter"/>
+        <helper:StatusTextConverter x:Key="StatusTextConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:HistoryViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding RefreshOrdersCommand}"/>
+    </ContentPage.ToolbarItems>
+        <ScrollView>
+            <AbsoluteLayout>
+                <StackLayout 
+                    Padding="24"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0.5, 0"
+                    HorizontalOptions="CenterAndExpand"
+                    >
+                <Label Text="Your last orders:" Style="{StaticResource TextLargeSecondary}"  Padding="0, 20"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding Orders}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <xcl:Expander BackgroundColor="{Binding Status, Converter={StaticResource StatusColorConverter}}"  MinimumHeightRequest="64"  Padding="12,0">
+                                    <xcl:Expander.Header>
+                                        <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Date}" Style="{StaticResource TextLargeSecondary}" Padding="12, 12"/>
+                                            <Frame BackgroundColor="Transparent" Padding="0">
+                                                <Image Source="icon_expand.png"
+                                               VerticalOptions="CenterAndExpand"
+                                               WidthRequest="32"
+                                               HeightRequest="32">
+                                                    <Image.Triggers>
+                                                        <DataTrigger TargetType="Image"
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type xcl:Expander}}, Path=IsExpanded}"
+                                                     Value="True">
+                                                            <Setter Property="Source"
+                                                    Value="icon_collapse.png" />
+                                                        </DataTrigger>
+                                                    </Image.Triggers>
+                                                </Image>
+                                            </Frame>
+                                        </FlexLayout>
+                                    </xcl:Expander.Header>
+                                    <xcl:Expander.ContentTemplate>
+                                        <DataTemplate>
+                                        <StackLayout Padding="12, 0, 12, 12">
+                                            <Label 
+                                                Text="{Binding Status, Converter={StaticResource StatusTextConverter}}"
+                                                FontAttributes="Bold"
+                                                Style="{StaticResource TextMediumSecondary}"
+                                                HorizontalTextAlignment="Center"
+                                                />
+                                            <Label Text="Products:" FontAttributes="Bold"/>
+                                            <StackLayout BindableLayout.ItemsSource="{Binding Products}" >
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="64"/>
+                                                                <ColumnDefinition Width="32"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Column="0" Text="{Binding Title}"/>
+                                                            <Label Grid.Column="1" Text="{Binding Price, StringFormat='{0:C2}'}"/>
+                                                            <Label Grid.Column="2" Text="{Binding Quantity}"/>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                    </xcl:Expander.ContentTemplate>
+                                </xcl:Expander>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </StackLayout>
+                <!-- Loader with background -->
+                <BoxView
+                        IsVisible="{Binding IsBusy}"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="SizeProportional"
+                        Style="{StaticResource LoaderBackground}"
+                        />
+                <ActivityIndicator 
+                        IsRunning="{Binding IsBusy}"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds ="0.5, 0.5"
+                        Color="{StaticResource Primary}"
+                        Scale="2"/>
+            </AbsoluteLayout>
+        </ScrollView>
+</ContentPage>

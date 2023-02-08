@@ -6,9 +6,9 @@ namespace GlovobolieApp.Models.Enums
 {
     public enum OrderStatus 
     { 
-        Requested,
-        InProgress,
-        Delivered
+        Requested = 0,
+        InProgress = 1,
+        Delivered = 2
     }
 
 }

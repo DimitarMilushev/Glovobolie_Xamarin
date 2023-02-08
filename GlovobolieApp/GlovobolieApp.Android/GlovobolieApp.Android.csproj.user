@@ -4,5 +4,6 @@
     <SelectedDevice>HUAWEI MED-LX9N</SelectedDevice>
     <SelectedPlatformGroup>PhysicalDevice</SelectedPlatformGroup>
     <ActiveDebugProfile>HUAWEI MED-LX9N %28Android 10.0 - API 29%29</ActiveDebugProfile>
+    <AndroidDesignerPreferredTheme>MainTheme</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

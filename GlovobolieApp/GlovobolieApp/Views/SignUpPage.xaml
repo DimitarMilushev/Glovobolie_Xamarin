@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:GlovobolieApp.ViewModels"
-             NavigationPage.HasBackButton="False"
              x:Class="GlovobolieApp.Views.SignUpPage">
     <ContentPage.BindingContext>
         <local:SignUpViewModel/>
     </ContentPage.BindingContext>
-    <AbsoluteLayout BackgroundColor="{StaticResource BackgroundPrimary}">
+    <AbsoluteLayout>
         <ScrollView AbsoluteLayout.LayoutFlags="All"
                     AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1"
                     Padding="0, 64">
