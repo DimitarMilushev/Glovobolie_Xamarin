@@ -44,11 +44,6 @@ namespace GlovobolieApp.ViewModels
         private async void OnSignUpClicked() => await Shell.Current.GoToAsync(nameof(SignUpPage));
         private async void OnLoginClicked()
         {
-            await authService.LoginAsync("test@test.com", "Tester01");
-            await Shell.Current.GoToAsync($"//Products");
-
-            return;
-            this.ValidateForm(); // TODO: REMOVE
             if (this.ErrorMessage != null)
             {
                 this.ForceUpdateUI();

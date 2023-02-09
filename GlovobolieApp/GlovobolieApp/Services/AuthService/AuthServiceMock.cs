@@ -14,7 +14,7 @@ namespace GlovobolieApp.Services.AuthService
     {
         public async Task LoginAsync(string email, string password)
         {
-            if (!(await CheckCredentials(email, password)))
+            if (!(await CheckCredentialsAsync(email, password)))
             {
                 throw new ValidationException("Credentials do not match!");
             }
@@ -24,18 +24,18 @@ namespace GlovobolieApp.Services.AuthService
         }
         public async Task SignUpAsync(string email, string password, PersonalData data)
         {
-            if (await CheckEmail(email))
+            if (await CheckEmailAsync(email))
             {
                 throw new ValidationException("User already exists!");
             }
         }
-        public Task<bool> CheckCredentials(string email, string password) =>
+        public Task<bool> CheckCredentialsAsync(string email, string password) =>
             Task.Run(() =>
             {
                 Thread.Sleep(1000);
                 return email == "test@test.com" && password == "Tester01";
             });
-        public Task<bool> CheckEmail(string email) =>
+        public Task<bool> CheckEmailAsync(string email) =>
             Task.Run(() =>
                 {
                     Thread.Sleep(1000);

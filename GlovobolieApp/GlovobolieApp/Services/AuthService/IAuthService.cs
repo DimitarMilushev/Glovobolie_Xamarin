@@ -10,8 +10,8 @@ namespace GlovobolieApp.Services.UserService
     {
         Task LoginAsync(string email, string password);
         Task SignUpAsync(string email, string password, PersonalData data);
-        Task<bool> CheckCredentials(string email, string password);
-        Task<bool> CheckEmail(string email);
+        Task<bool> CheckCredentialsAsync(string email, string password);
+        Task<bool> CheckEmailAsync(string email);
         Task<PersonalData> GetPersonalDataAsync(string email);
         Task LogoutAsync();
     }

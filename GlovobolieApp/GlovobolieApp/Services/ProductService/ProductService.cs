@@ -33,7 +33,6 @@ namespace GlovobolieApp.Artifacts.ProductService
                         Description = reader.GetString("description"),
                         Price = reader.GetDouble("price"),
                         ImageURL = reader.GetString("imageURL"),
-                        Rating = reader.GetDouble("rating"),
                         Quantity = 1
                     }); ;
                 }
