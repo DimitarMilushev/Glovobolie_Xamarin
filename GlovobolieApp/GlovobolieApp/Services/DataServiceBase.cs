@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using GlovobolieApp.Artifacts.RepositoryService;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace GlovobolieApp.Services
         protected MySqlConnection connection;
         public DataServiceBase() 
         { 
-            this.connection = DependencyService.Get<MySqlConnection>();
+            this.connection = DependencyService.Get<Repository>().connection;
         }
     }
 }

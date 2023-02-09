@@ -7,6 +7,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace GlovobolieApp.ViewModels
@@ -44,6 +45,7 @@ namespace GlovobolieApp.ViewModels
         private async void OnSignUpClicked() => await Shell.Current.GoToAsync(nameof(SignUpPage));
         private async void OnLoginClicked()
         {
+            this.ValidateForm();
             if (this.ErrorMessage != null)
             {
                 this.ForceUpdateUI();
@@ -63,7 +65,7 @@ namespace GlovobolieApp.ViewModels
                 }
                 else
                 {
-                    throw ex;
+                    await Application.Current.MainPage.DisplayToastAsync(ex.Message, 2000);
                 }
             }
             finally 

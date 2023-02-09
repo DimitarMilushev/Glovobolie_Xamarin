@@ -29,7 +29,7 @@ namespace GlovobolieApp.ViewModels
             this.IsBusy = true;
             try
             {   
-              Orders = new ObservableCollection<Order>(await this._orderService.GetAllOrders());
+              Orders = new ObservableCollection<Order>(await this._orderService.GetAllOrdersAsync());
             } catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);

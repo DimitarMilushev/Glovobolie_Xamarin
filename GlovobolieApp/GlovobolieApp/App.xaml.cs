@@ -31,7 +31,7 @@ namespace GlovobolieApp
             }
             else
             {
-                DependencyService.RegisterSingleton<Repository>(new Repository());
+                DependencyService.RegisterSingleton<Repository>(Repository.Instance);
                 DependencyService.Register<AuthService>();
                 DependencyService.Register<ProductService>();
                 DependencyService.Register<OrderService>();

@@ -61,6 +61,7 @@ namespace GlovobolieApp.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
+            if (IsBusy) return;
             IsBusy = true;
 
             try
@@ -75,6 +76,7 @@ namespace GlovobolieApp.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
+                await Application.Current.MainPage.DisplayToastAsync(ex.Message, 2000);
             }
             finally
             {
@@ -110,7 +112,7 @@ namespace GlovobolieApp.ViewModels
            this.sessionService.Data.AddToCart(this.SelectedItem);
           
             this.DismissProductPopup();
-            this.CartItemsCount = this.sessionService.Data.CartItemsCount;
+            this.CartItemsCount = this.sessionService.Data.GetProducts().Sum(x => x.Quantity);
         }
         private void DismissProductPopup()
         {
@@ -129,13 +131,10 @@ namespace GlovobolieApp.ViewModels
         {
             this.SelectedItem = item;
             Debug.WriteLine($"Selected item {item.Title}");
-
-            // This will push the ItemDetailPage onto the navigation stack
-            //    await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
         public void OnAppearing()
         {
-            this.CartItemsCount = this.sessionService.Data.CartItemsCount;
+            this.CartItemsCount = this.sessionService.Data.GetProducts().Sum(x => x.Quantity);
         }
 
         protected override void InitDependencies()

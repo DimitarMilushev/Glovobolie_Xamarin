@@ -1,9 +1,12 @@
-﻿using MySqlConnector;
+﻿using GlovobolieApp.Services;
+using MySqlConnector;
 
 namespace GlovobolieApp.Artifacts.RepositoryService
 {
     public class Repository
     {
+        private static Repository instance;
+        private static readonly object padlock = new object();
         public MySqlConnection connection { get; private set; }
         private MySqlConnectionStringBuilder connectionStringBuilder = new MySqlConnectionStringBuilder
         {
@@ -14,9 +17,23 @@ namespace GlovobolieApp.Artifacts.RepositoryService
             Port = 3306,
         };
 
-        public Repository()
+        private Repository()
         {
             connection = new MySqlConnection(connectionStringBuilder.ConnectionString);
+        }
+        public static Repository Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new Repository();
+                    }
+                    return instance;
+                }
+            }
         }
     }
 }

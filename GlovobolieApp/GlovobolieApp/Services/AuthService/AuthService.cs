@@ -14,19 +14,19 @@ namespace GlovobolieApp.Services.UserService
     {
         public Task<bool> CheckCredentialsAsync(string email, string password)
         {
-            string query = $"SELECT * FROM `users` WHERE email = {email} AND _password = {password} LIMIT 1;";
+            string query = $"SELECT * FROM `users` HAVING email = '{email}' AND _password = '{password}' LIMIT 1;";
             return Task.Run<bool>(() => CheckCredentials(query));
         }
 
         public Task<bool> CheckEmailAsync(string email)
         {
-            string query = $"SELECT * FROM `users` WHERE email = {email} LIMIT 1;";
+            string query = $"SELECT * FROM `users` HAVING email = '{email}' LIMIT 1;";
             return Task.Run<bool>(() => CheckEmail(query));
         }
 
         public Task<PersonalData> GetPersonalDataAsync(string email)
         {
-            string query = $"SELECT first_name, last_name, address, country, city, phone_number, email FROM `users` WHERE email = {email} LIMIT 1";
+            string query = $"SELECT first_name, last_name, address, country, city, phone_number, email FROM `users` HAVING email = '{email}' LIMIT 1";
             return Task.Run<PersonalData>(() => GetPersonalData(query));
         }
 
@@ -86,7 +86,7 @@ namespace GlovobolieApp.Services.UserService
                 connection.Open();
                 var command = new MySqlCommand(query, connection);
                 var reader = command.ExecuteReader();
-                if (!reader.NextResult()) throw new Exception("Couldn't find user!");
+                if (!reader.Read()) throw new Exception("Couldn't find user!");
 
                 return new PersonalData(
                     reader.GetString("first_name"),

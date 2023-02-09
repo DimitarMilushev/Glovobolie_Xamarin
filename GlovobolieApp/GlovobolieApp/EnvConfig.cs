@@ -11,6 +11,6 @@ namespace GlovobolieApp
             TEST = 0,
             PROD = 1
         }
-        public static Env CurrentEnvironment { get; } = Env.TEST;
+        public static Env CurrentEnvironment { get; } = Env.PROD;
     }
 }
