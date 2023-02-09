@@ -1,5 +1,6 @@
 ﻿using GlovobolieApp.Models;
 using GlovobolieApp.Services;
+using GlovobolieApp.Services.OrderService;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ namespace GlovobolieApp.ViewModels
 {
     public class CartViewModel : BaseViewModel
     {
+        private IOrderService _orderService;
         private ObservableCollection<Product> products;
         public bool HasItems { get => this.ItemsCount > 0; }
         public double Total { get => this.Products.Sum(x => x.Price * x.Quantity); }
@@ -71,11 +73,14 @@ namespace GlovobolieApp.ViewModels
             this.IsBusy = true;
             try
             {
-                await Task.Run(() =>
+                await _orderService.PlaceOrderAsync(new Order
                 {
-                    Thread.Sleep(1000);
-                    sessionService.Data.EmptyCart();
+                    Products = this.Products.ToList(),
+                    Date = DateTime.Now,
+                    Status = Models.Enums.OrderStatus.Requested,
+                    UserId = this.sessionService.Data.Id
                 });
+                sessionService.Data.EmptyCart();
                 await Application.Current.MainPage.Navigation.PopAsync();
             } catch (Exception ex)
             {
@@ -88,6 +93,13 @@ namespace GlovobolieApp.ViewModels
         protected override void InitDependencies()
         {
             this.sessionService = DependencyService.Get<SessionService>();
+            if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
+            {
+                this._orderService = DependencyService.Get<OrderServiceMock>();
+            } else
+            {
+                this._orderService = DependencyService.Get<OrderService>();
+            }
         }
     }
 }

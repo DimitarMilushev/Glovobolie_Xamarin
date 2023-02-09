@@ -16,7 +16,6 @@ namespace GlovobolieApp.Views
 		public SignUpPage ()
 		{
 			InitializeComponent ();
-            this.BindingContext = new SignUpViewModel();
 		}
 	}
 }

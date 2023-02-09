@@ -16,7 +16,6 @@ namespace GlovobolieApp.Views
         public CartPage()
         {
             InitializeComponent();
-            this.BindingContext = new CartViewModel();
         }
     }
 }

@@ -18,11 +18,11 @@ namespace GlovobolieApp.Services.AuthService
             {
                 throw new ValidationException("Credentials do not match!");
             }
-            var data = await GetPersonalDataAsync(email);
-
-            DependencyService.Get<SessionService>().UpdateSession(1, email, data);
+            var data = await GetUserDataAsync(email);
+            var personalData = new PersonalData(data.FirstName, data.LastName, data.Address, data.PhoneNumber, data.Country, data.City);
+            DependencyService.Get<SessionService>().UpdateSession(data.Id, data.Email, personalData);
         }
-        public async Task SignUpAsync(string email, string password, PersonalData data)
+        public async Task SignUpAsync(string email, string password, User data)
         {
             if (await CheckEmailAsync(email))
             {
@@ -33,7 +33,7 @@ namespace GlovobolieApp.Services.AuthService
             Task.Run(() =>
             {
                 Thread.Sleep(1000);
-                return email == "test@test.com" && password == "Tester01";
+                return (email == "test@test.com" && password == "Tester01");
             });
         public Task<bool> CheckEmailAsync(string email) =>
             Task.Run(() =>
@@ -42,8 +42,17 @@ namespace GlovobolieApp.Services.AuthService
                     return email == "test@test.com";
                 });
 
-        public Task<PersonalData> GetPersonalDataAsync(string email)
-        => Task.Run(() => new PersonalData("John", "Doe", "Blagoevgrad, Bul. Sv. sv. Kiril & Metodii 17", "0888 777 7777", "Bulgaria", "Blagoevgrad"));
+        public Task<User> GetUserDataAsync(string email)
+        => Task.Run(() => new User {
+            Id = 1,
+            Email = email,
+            FirstName = "John",
+            LastName = "Doe",
+            City = "Blagoevgrad",
+            Address = "Bul. Sv. sv. Kiril & Metodii 17",
+            PhoneNumber = "0888 777 7777",
+            Country = "Bulgaria"
+        });
 
         public async Task LogoutAsync()
         {

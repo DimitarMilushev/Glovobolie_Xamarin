@@ -1,32 +1,63 @@
-﻿using GlovobolieApp.Helpers;
+﻿using GlovobolieApp.Artifacts.ProductService;
+using GlovobolieApp.Helpers;
 using GlovobolieApp.Models;
+using GlovobolieApp.Models.Enums;
 using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace GlovobolieApp.Services.OrderService
 {
     public class OrderService : DataServiceBase, IOrderService
     {
-        public Task<ICollection<Order>> GetAllOrdersAsync()
+        public async Task<ICollection<Order>> GetAllOrdersByUserAsync(int userId)
         {
-            throw new NotImplementedException();
+            string query = $"SELECT * FROM `orders` HAVING user_id = '{userId}';";
+            ICollection<Order> orders = await Task.Run(() => this.GetAllOrdersByUser(query, userId));
+            foreach(var order in orders)
+            {
+                order.Products = await DependencyService.Get<IProductService>().GetProductsByOrderAsync(order.Id);
+            }
+            return orders;
         }
 
-        public Task<Order> GetOrderAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task PlaceOrderAsync(Order order, int userId)
+        public async Task PlaceOrderAsync(Order order)
         {
             string query = "INSERT INTO `orders`( `date_ordered`, `status_id`, `user_id`)" +
-                $" VALUES ('{DateHelper.FormatMySQL(order.Date)}','{(int)order.Status}','{userId}')";
+                $" VALUES ('{DateHelper.FormatMySQL(order.Date)}','{(int)order.Status}','{order.UserId}')";
             int orderId = await Task.Run(() => this.PlaceOrder(query));
             await Task.Run(() => this.CreateOrderedProducts(order.Products, orderId));
+        }
+        private ICollection<Order> GetAllOrdersByUser(string query, int userId)
+        {
+            List<Order> orders = new List<Order>();
+            try
+            {
+                this.connection.Open();
+                MySqlCommand command = new MySqlCommand(query, connection);
+                var reader = command.ExecuteReader();
+                while(reader.Read())
+                {
+                    orders.Add(new Order
+                    {
+                        Id= reader.GetInt32("id"),
+                        Date = reader.GetDateTime("date_ordered"),
+                        Status = (OrderStatus)reader.GetInt32("status_id"),
+                        UserId = userId
+                    });
+                }
+                return orders;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                throw ex;
+            }
+            finally { this.connection.Close(); }
         }
         private void CreateOrderedProducts(ICollection<Product> products, int orderId)
         {
@@ -62,7 +93,7 @@ namespace GlovobolieApp.Services.OrderService
                 var orderIdCommand = new MySqlCommand("SELECT LAST_INSERT_ID();", connection);
                 var orderId = orderIdCommand.ExecuteScalar();
                 if (orderId == null) throw new Exception("Failed to find new order!");
-                return (int)orderId;
+                return int.Parse(orderId.ToString());
             }
             catch (Exception ex)
             {

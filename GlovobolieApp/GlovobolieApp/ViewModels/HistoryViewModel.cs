@@ -1,4 +1,5 @@
 ﻿using GlovobolieApp.Models;
+using GlovobolieApp.Services;
 using GlovobolieApp.Services.OrderService;
 using System;
 using System.Collections.ObjectModel;
@@ -11,8 +12,11 @@ namespace GlovobolieApp.ViewModels
     public class HistoryViewModel : BaseViewModel
     {
         private IOrderService _orderService;
+        private SessionService _sessionService;
         private ObservableCollection<Order> _orders;
-        public Command RefreshOrdersCommand { get; }
+        public Command OnAppearingCommand { get; }
+        public Command OnDisappearingCommand { get; }
+
         public ObservableCollection<Order> Orders
         {
             get => _orders;
@@ -21,31 +25,34 @@ namespace GlovobolieApp.ViewModels
         public HistoryViewModel() : base()
         {
             this.Title = "My History";
-            this.RefreshOrdersCommand = new Command(this.ReloadOrders);
-            Task.Run(this.LoadOrders);
+            OnAppearingCommand = new Command(this.OnAppearing);
+            OnDisappearingCommand = new Command(this.OnDisappearing);
         }
+
+        private async void OnAppearing()
+        {
+            await Task.Run(this.LoadOrders);
+        }
+        private void OnDisappearing()
+        {
+            _orders = null;
+        }
+
         private async void LoadOrders()
         {
+            if (IsBusy) return;
             this.IsBusy = true;
             try
             {   
-              Orders = new ObservableCollection<Order>(await this._orderService.GetAllOrdersAsync());
+              Orders = new ObservableCollection<Order>(await this._orderService.GetAllOrdersByUserAsync(_sessionService.Data.Id));
             } catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             } finally { this.IsBusy = false; }
         }
-        private void ReloadOrders()
-        {
-            // Return if already loading
-            if (this.IsBusy) return;
-
-            Orders.Clear();
-            SetProperty(ref _orders, Orders);
-            this.LoadOrders();
-        }
         protected override void InitDependencies()
         {
+            this._sessionService = DependencyService.Get<SessionService>();
             if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
             {
                 _orderService = DependencyService.Get<OrderServiceMock>();

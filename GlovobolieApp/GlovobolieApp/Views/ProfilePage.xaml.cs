@@ -16,7 +16,6 @@ namespace GlovobolieApp.Views
         public ProfilePage()
         {
             InitializeComponent();
-            BindingContext = new ProfileViewModel();
         }
     }
 }

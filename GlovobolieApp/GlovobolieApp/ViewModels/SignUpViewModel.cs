@@ -73,7 +73,15 @@ namespace GlovobolieApp.ViewModels
             try
             {
                 this.IsBusy = true;
-                await authService.SignUpAsync(Email, Password, new PersonalData(FirstName, LastName, Address, PhoneNumber, Country, City));
+                await authService.SignUpAsync(Email, Password, new User
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Address = Address,
+                    PhoneNumber = PhoneNumber,
+                    Country = Country,
+                    City = City
+                });
                 await Shell.Current.GoToAsync(nameof(LoginPage));
             } catch (Exception ex)
             {

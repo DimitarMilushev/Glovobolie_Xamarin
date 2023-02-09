@@ -8,8 +8,7 @@ namespace GlovobolieApp.Services.OrderService
 {
     interface IOrderService
     {
-        Task<Order> GetOrderAsync(int id);
-        Task<ICollection<Order>> GetAllOrdersAsync();
-        Task PlaceOrderAsync(Order order, int userId);
+        Task<ICollection<Order>> GetAllOrdersByUserAsync(int userId);
+        Task PlaceOrderAsync(Order order);
     }
 }

@@ -8,6 +8,17 @@
     <ContentPage.BindingContext>
         <local:ProfileViewModel/>
     </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <xcl:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding OnAppearingCommand}"
+            />
+        <xcl:EventToCommandBehavior
+            EventName="Disappearing"
+            Command="{Binding OnDisappearingCommand}"
+            />
+    </ContentPage.Behaviors>
     <ScrollView>
     <StackLayout Padding="24">
         <StackLayout Padding="0, 0, 0, 24" HorizontalOptions="CenterAndExpand">
@@ -19,7 +30,7 @@
                     <FormattedString>
                         <FormattedString.Spans>
                             <Span Text="Greetings, "/>
-                            <Span Text="{Binding UserData.FirstName}"/>
+                            <Span Text="{Binding PersonalData.FirstName}"/>
                             <Span Text="!"/>
                         </FormattedString.Spans>
                     </FormattedString>

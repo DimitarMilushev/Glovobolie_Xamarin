@@ -27,13 +27,13 @@ namespace GlovobolieApp.ViewModels
         public Command GoToCartTapped { get; }
         public Command OnAppearingCommand { get; }
 
-        private IProductService productService;
-        private SessionService sessionService;
+        private IProductService _productService;
+        private SessionService _sessionService;
         public ProductsViewModel() : base()
         {
             Title = "Products";
             Items = new ObservableCollection<Product>();
-            LoadProductsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadProductsCommand = new Command(async () => await LoadItems());
 
             ItemTapped = new Command<Product>(OnItemSelected);
             DismissPopupCommand = new Command(this.DismissProductPopup);
@@ -41,7 +41,7 @@ namespace GlovobolieApp.ViewModels
             GoToCartTapped = new Command(this.OnGoToCartTapped);
             AddProductCommand = new Command(OnAddItem);
             OnAppearingCommand = new Command(this.OnAppearing);
-            Task.Run(this.ExecuteLoadItemsCommand);
+            Task.Run(this.LoadItems);
         }
 
         public int CartItemsCount { 
@@ -59,7 +59,7 @@ namespace GlovobolieApp.ViewModels
         public bool HasCartItems { get => this._cartItemsCount > 0; }
         private async void OnGoToCartTapped() => await Shell.Current.GoToAsync(nameof(CartPage));
 
-        async Task ExecuteLoadItemsCommand()
+        async Task LoadItems()
         {
             if (IsBusy) return;
             IsBusy = true;
@@ -67,7 +67,7 @@ namespace GlovobolieApp.ViewModels
             try
             {
                 Items.Clear();
-                var newItems = await productService.GetProductsAsync();
+                var newItems = await _productService.GetAllProductsAsync();
                 foreach (var item in newItems)
                 {
                     Items.Add(item);
@@ -109,10 +109,10 @@ namespace GlovobolieApp.ViewModels
                 await currentPage.DisplayToastAsync("Failed to add item to cart :(", 2000);
                 return;
             }
-           this.sessionService.Data.AddToCart(this.SelectedItem);
+           this._sessionService.Data.AddToCart(this.SelectedItem);
           
             this.DismissProductPopup();
-            this.CartItemsCount = this.sessionService.Data.GetProducts().Sum(x => x.Quantity);
+            this.CartItemsCount = this._sessionService.Data.GetProducts().Sum(x => x.Quantity);
         }
         private void DismissProductPopup()
         {
@@ -134,19 +134,19 @@ namespace GlovobolieApp.ViewModels
         }
         public void OnAppearing()
         {
-            this.CartItemsCount = this.sessionService.Data.GetProducts().Sum(x => x.Quantity);
+            this.CartItemsCount = this._sessionService.Data.GetProducts().Sum(x => x.Quantity);
         }
 
         protected override void InitDependencies()
         {
-            sessionService = DependencyService.Get<SessionService>();
+            _sessionService = DependencyService.Get<SessionService>();
             if (EnvConfig.CurrentEnvironment == EnvConfig.Env.TEST)
             {
-                productService = DependencyService.Get<ProductServiceMock>();
+                _productService = DependencyService.Get<ProductServiceMock>();
             }
             else
             {
-                productService = DependencyService.Get<ProductService>();
+                _productService = DependencyService.Get<ProductService>();
             }
         }
     }

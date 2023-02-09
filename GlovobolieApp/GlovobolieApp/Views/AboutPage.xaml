@@ -16,7 +16,7 @@
     </ContentPage.Resources>
 
     <StackLayout>
-        <Label Text="Welcome to my About page" Style="{StaticResource TextLargeSecondary}" HorizontalOptions="CenterAndExpand" Padding="0, 24"/>
+        <Label Text="FAQ" Style="{StaticResource TextLargeSecondary}" HorizontalOptions="CenterAndExpand" Padding="0, 24"/>
         <ListView ItemsSource="{Binding AboutInformation}" WidthRequest="336" Margin="24">
             <ListView.ItemTemplate>
                 <DataTemplate>

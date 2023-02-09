@@ -13,7 +13,7 @@ namespace GlovobolieApp.Services.OrderService
     public class OrderServiceMock : DataServiceBase, IOrderService
     {
         Random random = new Random();
-        public async Task<ICollection<Order>> GetAllOrdersAsync()
+        public async Task<ICollection<Order>> GetAllOrdersByUserAsync(int userId)
         {
             Thread.Sleep(1000);
             return new List<Order>
@@ -25,19 +25,15 @@ namespace GlovobolieApp.Services.OrderService
             };
         }
 
-        public Task<Order> GetOrderAsync(int id)
+        public Task PlaceOrderAsync(Order order)
         {
-            throw new NotImplementedException();
+            // Nothing local to be added - just imitate time
+            Thread.Sleep(1000);
+            return Task.CompletedTask;
         }
-
-        public Task PlaceOrderAsync(Order order, int userId)
-        {
-            throw new NotImplementedException();
-        }
-
         private async Task<List<Product>> GetRandomProducts()
         {
-            var allProducts = await DependencyService.Get<ProductServiceMock>().GetProductsAsync();
+            var allProducts = await DependencyService.Get<ProductServiceMock>().GetAllProductsAsync();
             int bondary= random.Next(0, allProducts.Count);
             return allProducts.GetRange(1, bondary);
         }

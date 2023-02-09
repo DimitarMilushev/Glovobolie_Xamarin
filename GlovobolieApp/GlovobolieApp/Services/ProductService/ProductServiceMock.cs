@@ -9,7 +9,13 @@ namespace GlovobolieApp.Services.ProductService
 {
     public class ProductServiceMock : IProductService
     {
-        public Task<List<Product>> GetProductsAsync() => Task.Run(() =>
+        public Task<Product> GetProductByIdAsync(int productId) => Task.Run(() =>
+        {
+            System.Threading.Thread.Sleep(1000);
+            return new Product { Id = 1, Title = "First item", Description = "This is an item description.", Price = 13.2, ImageURL = "https://thumbs.dreamstime.com/z/chef-hotel-restaurant-kitchen-cooking-hands-prepared-beef-steak-vegetable-decoration-81415061.jpg", Quantity = 1 };
+        });
+
+        public Task<List<Product>> GetAllProductsAsync() => Task.Run(() =>
         {
             System.Threading.Thread.Sleep(1000);
             return new List<Product>()
@@ -21,5 +27,10 @@ namespace GlovobolieApp.Services.ProductService
                 new Product { Id = 5, Title = "Sixth item", Description="This is an item description." , Price = 10.5, ImageURL = "https://thumbs.dreamstime.com/b/bombay-potato-curry-indian-food-29146242.jpg", Quantity = 1}
             };
         });
+
+        public Task<List<Product>> GetProductsByOrderAsync(int orderId)
+        {
+            return GetAllProductsAsync();
+        }
     }
 }

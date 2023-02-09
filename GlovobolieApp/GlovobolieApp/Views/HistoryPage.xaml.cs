@@ -16,7 +16,6 @@ namespace GlovobolieApp.Views
         public HistoryPage()
         {
             InitializeComponent();
-            this.BindingContext = new HistoryViewModel();
         }
     }
 }

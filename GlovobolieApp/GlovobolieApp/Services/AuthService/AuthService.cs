@@ -24,10 +24,10 @@ namespace GlovobolieApp.Services.UserService
             return Task.Run<bool>(() => CheckEmail(query));
         }
 
-        public Task<PersonalData> GetPersonalDataAsync(string email)
+        public Task<User> GetUserDataAsync(string email)
         {
-            string query = $"SELECT first_name, last_name, address, country, city, phone_number, email FROM `users` HAVING email = '{email}' LIMIT 1";
-            return Task.Run<PersonalData>(() => GetPersonalData(query));
+            string query = $"SELECT * FROM `users` HAVING email = '{email}' LIMIT 1";
+            return Task.Run<User>(() => GetUserData(query));
         }
 
         public async Task LoginAsync(string email, string password)
@@ -36,12 +36,12 @@ namespace GlovobolieApp.Services.UserService
             {
                 throw new ValidationException("Credentials do not match!");
             }
-            var data = await GetPersonalDataAsync(email);
-
-            DependencyService.Get<SessionService>().UpdateSession(1, email, data);
+            var data = await GetUserDataAsync(email);
+            var personalData = new PersonalData(data.FirstName, data.LastName, data.Address, data.PhoneNumber, data.Country, data.City);
+            DependencyService.Get<SessionService>().UpdateSession(data.Id, data.Email, personalData);
         }
 
-        public async Task SignUpAsync(string email, string password, PersonalData data)
+        public async Task SignUpAsync(string email, string password, User data)
         {
             if (await CheckEmailAsync(email))
             {
@@ -79,7 +79,7 @@ namespace GlovobolieApp.Services.UserService
             }
         }
 
-        private PersonalData GetPersonalData(string query)
+        private User GetUserData(string query)
         {
             try
             {
@@ -88,14 +88,16 @@ namespace GlovobolieApp.Services.UserService
                 var reader = command.ExecuteReader();
                 if (!reader.Read()) throw new Exception("Couldn't find user!");
 
-                return new PersonalData(
-                    reader.GetString("first_name"),
-                    reader.GetString("last_name"),
-                    reader.GetString("address"),
-                    reader.GetString("phone_number"),
-                    reader.GetString("country"),
-                    reader.GetString("city")
-                    );
+                return new User {
+                    Id = reader.GetInt32("id"),
+                    Email = reader.GetString("email"),
+                    FirstName = reader.GetString("first_name"),
+                    LastName = reader.GetString("last_name"),
+                    Address = reader.GetString("address"),
+                    PhoneNumber = reader.GetString("phone_number"),
+                    Country = reader.GetString("country"),
+                    City = reader.GetString("city")
+                    };
             } catch (Exception e) { 
                 Debug.WriteLine(e.Message);
                 throw e;
@@ -128,13 +130,13 @@ namespace GlovobolieApp.Services.UserService
         }
         private bool CheckCredentials(string query)
         {
-            bool userExists = false;
+            bool hasUser = false;
             try
             {
                 connection.Open();
                 var command = new MySqlCommand(query, connection);
                 var reader = command.ExecuteScalar();
-                userExists = (reader != null);
+                if (reader != null) hasUser = true;
             }
             catch (Exception e)
             {
@@ -145,7 +147,7 @@ namespace GlovobolieApp.Services.UserService
             {
                 connection.Close();
             }
-            return userExists;
+            return hasUser;
         }
     }
 }
